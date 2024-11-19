@@ -8,7 +8,7 @@ export class httpMethods {
 
 	async get(){
 		try{
-			let res = await axios.get('${url}/${apiAddres}')
+			let res = await axios.get(`${url}/${apiAddress}`)
 			return res
 		}catch(err){
 			return(err)
@@ -17,7 +17,7 @@ export class httpMethods {
 
 	async post(apiAddress, data){
 		try{
-			let res = await axios.get('${url}/${apiAddres}', data)
+			let res = await axios.post(`${url}/${apiAddress}`, data)
 			return res
 		}catch(err){
 			return(err)
@@ -26,7 +26,7 @@ export class httpMethods {
 
 	async put(apiAddress, data){
 		try{
-			let res = await axios.get('${url}/${apiAddres}')
+			let res = await axios.put(`${url}/${apiAddress}`)
 			return res
 		}catch(err){
 			return(err)
@@ -35,7 +35,7 @@ export class httpMethods {
 
 	async patch(apiAddress, data){
 		try{
-			let res = await axios.get('${url}/${apiAddres}')
+			let res = await axios.patch(`${url}/${apiAddress}`)
 			return res
 		}catch(err){
 			return(err)
@@ -44,7 +44,7 @@ export class httpMethods {
 
 	async delete(apiAddress, value){
 		try{
-			let res = await axios.get('${url}/${apiAddres}/${url}')
+			let res = await axios.delete(`${url}/${apiAddress}/${value}`)
 			return res
 		}catch(err){
 			return(err)

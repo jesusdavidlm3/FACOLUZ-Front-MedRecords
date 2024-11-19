@@ -1,7 +1,7 @@
 import { httpMethods } from './httpMethods'
 
-const httpMethods = httpMethods()
+const http = new httpMethods()
 
-async function login(data){
-	return httpMethods.post('/api/login', data)
+export async function login(data){
+	return http.post('api/login', data)
 }

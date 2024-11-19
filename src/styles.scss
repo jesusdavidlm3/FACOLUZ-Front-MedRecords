@@ -1,8 +1,10 @@
 :root{
-	--bgColor: #3a0ca3;	
-	--moduleColor: #4361ee;
+	--bgColor: white;	
+	--moduleColor: #3a0ca3;
+	--borderColor: #4361ee;
 	--hlColor: #7209b7;
-	--moduleRadius: 15px
+	--moduleRadius: 15px;
+	--shadow: 0px 0px 15px 15px rgba(0, 0, 0, 0.3)
 }
 
 body{
@@ -30,5 +32,7 @@ body{
 		align-items: center;
 		justify-content: center;
 		border-radius: var(--moduleRadius);
+		color: white;
+		border: 5px solid var(--borderColor);
 	}
 }

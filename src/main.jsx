@@ -7,9 +7,10 @@ import Root from './pages/Root'
 import ErrorPage from './pages/ErrorPage'
 import Login from './pages/Login'
 import Home from './pages/Home'
-import Dates from './pages/Dates'
-import History from './pages/History'
-
+import OpenHistory from './pages/OpenHistory'
+import SearchDate from './pages/SearchDate'
+import SearchHistory from './pages/SearchHistory'
+import OpenDate from './pages/OpenDate'
 
 const router = createBrowserRouter([{
   path: '/',
@@ -23,10 +24,16 @@ const router = createBrowserRouter([{
     element: <Home/>,
     children: [{
       path: '/home/dates',
-      element: <Dates/>
+      element: <SearchDate/>
     },{
       path: '/home/history',
-      element: <History/>
+      element: <SearchHistory/>
+    },{
+      path: '/home/openHistory',
+      element: <OpenHistory/>
+    },{
+      path: '/home/openDate',
+      element: <OpenDate/>
     }]
   }
 ]}])

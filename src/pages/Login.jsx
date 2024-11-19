@@ -2,7 +2,7 @@ import { Form, Input, Button } from 'antd'
 import { useContext, useState } from 'react'
 import { appContext } from '../context/appContext' 
 import { encrypt } from '../functions/hash'
-import { httpMethods } from '../client/client'
+import { login } from '../client/client'
 
 const Login = () => {
 
@@ -10,19 +10,16 @@ const Login = () => {
 	const [loading, setLoading] = useState(false)
 
 	const submitLogin = async () => {
-		setLoading(true)
-		const identification = Document.getElementById('identification').value
-		const password = Document.getElementById('password').value
+		setLoading(false)
+		const identification = document.getElementById('identification').value
+		const password = document.getElementById('password').value
 
 		const data = {
 			identification: identification,
 			passwordHash: await encrypt(password)
 		}
-
-		let res = await httpMethods.post(data)
-		if(res.status == 200){
-			
-		}
+		let res = await login(data)
+		console.log(res)
 	}
 
 	return(
@@ -36,7 +33,7 @@ const Login = () => {
 					<Input.Password placeholder='Contraseña'/>
 				</Form.Item>
 
-				<Button>Iniciar Sesion</Button>
+				<Button onClick={submitLogin}>Iniciar Sesion</Button>
 			</Form>
 		</div>
 	)

@@ -1,10 +1,18 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import LatPanel from '../components/LatPanel'
+import HistoryPanel from '../components/HistoryPanel'
 
 const Home = () => {
+
+	const location = useLocation()
+
 	return(
 		<div className='Home'>
-			<LatPanel/>
+			{location.pathname != '/home/openHistory' || location.pathname != '/home/openDate' ? (
+				<LatPanel/>
+			):(
+				<HistoryPanel/>
+			)}
 			<Outlet/>
 		</div>
 	)
