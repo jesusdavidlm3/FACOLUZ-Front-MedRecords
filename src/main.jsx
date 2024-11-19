@@ -1,7 +1,10 @@
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import ContextProvider from '../context/ContextProvider'
+import ContextProvider from './context/ContextProvider'
+import { ConfigProvider, theme } from 'antd'
+import './styles.scss'
 import Root from './pages/Root'
+import ErrorPage from './pages/ErrorPage'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Dates from './pages/Dates'
@@ -26,10 +29,12 @@ const router = createBrowserRouter([{
       element: <History/>
     }]
   }
-}])
+]}])
 
 createRoot(document.getElementById('root')).render(
   <ContextProvider>
-    <RouterProvider router={router} />
+    <ConfigProvider theme={{algorithm: theme.lightAlgorithm}} >
+      <RouterProvider router={router} />
+    </ConfigProvider>
   </ContextProvider>
 )

@@ -1,11 +1,12 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useEffect, useContext } from 'react'
+import { appContext } from '../context/appContext'
 import NavBar from '../components/NavBar'
 
 const Root = () => {
 
 	const navigate = useNavigate()
-	const { logged } = useContext(appContext)
+	const { logged, contextHolder } = useContext(appContext)
 
 	useEffect(() => {
 		navigate('/login')
@@ -13,6 +14,7 @@ const Root = () => {
 
 	return(
 		<>
+			{ contextHolder }
 			{ logged && <NavBar/> }
 			<Outlet/>
 		</>
