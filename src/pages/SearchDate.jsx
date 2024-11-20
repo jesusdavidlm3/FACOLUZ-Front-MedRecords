@@ -7,9 +7,9 @@ const SearchDate = () => {
 
     return(
         <div className='SearchDates'>
-            <div className="DatesSearBar">
-                <Input.Search/>
-                <DatePicker/>
+            <div className="DatesSearchBar">
+                <Input.Search placeholder='Ingrese nombre o cedula del paciente' style={{width: '40%'}} />
+                <DatePicker style={{width: '40%'}} />
             </div>
             {showList.map(item => (
                 <div className='ListItem'>

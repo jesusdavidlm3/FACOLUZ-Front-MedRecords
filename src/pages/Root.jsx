@@ -10,7 +10,7 @@ const Root = () => {
 	const { logged, contextHolder } = useContext(appContext)
 
 	useEffect(() => {
-		navigate('/login')
+		navigate('/home')
 	}, [])
 
 	return(
