@@ -118,20 +118,54 @@ export const BasicPatientRegisterModal = ({onCancel, open}) => {
 
 export const CreateHistoryModal = ({open, onCancel}) => {
 
-    const [selectedPatientType, setSelectedPatientType] = useState(false)
-    const [cedulado, setCedulado] = useState(0)
-    const [selectedIdType, setSelectedIdType] = useState(false)
+    const [name, setName] = useState(null)
+    const [lastname, setLastname] = useState(null)
+    const [patientType, setPatientType] = useState(null)
+    const [cedulado, setCedulado] = useState(null)
+    const [idType, setIdType] = useState(null)
+    const [idNumber, setIdNumber] = useState(null)
+    const [birthDate, setBirthDate] = useState(null)
+    const [sex, setSex] = useState(null)
+    const [address, setAddress] = useState(null)
+    const [instructionGrade, setInstructionGrade] = useState(null)
+    const [bloodType, setBloodType] = useState(null)
+    const [proneToBleeding, setProneToBleeding] = useState(null)
+    const [race, setRace] = useState(null)
+    const [aliments, setAliments] = useState(null)
+    const [otherAliments, setOtherAliments] = useState(null)
+    const [emergencyName, setEmergencyName] = useState(null)
+    const [emergencyPhone, setEmergencyPhone] = useState(null)
+
     const [currentPhase, setCurrentPhase] = useState(0)
 
     const submitHistory = () => {
         console.log('se envio la historia')
+        const data = {
+            name: name,
+            lastname: lastname,
+            patientType: patientType,
+            idType: idType,
+            idNumber: idNumber,
+            birthDate: birthDate,
+            sex: sex,
+            address: address,
+            instructionGrade: instructionGrade,
+            bloodType: bloodType,
+            proneToBleeding: proneToBleeding,
+            race: race,
+            aliments: aliments,
+            otherAliments: otherAliments,
+            emergencyName: emergencyName,
+            emergencyPhone: emergencyPhone
+        }
+        console.log(data)
     }
 
     return(
         <Modal
             destroyOnClose={true}
             open={open}
-            onCancel={() => {onCancel(); setPhase(false)}}
+            onCancel={() => {onCancel(); setCurrentPhase(0)}}
             title='Crear historia'
             footer={[
                 <Button
@@ -165,106 +199,120 @@ export const CreateHistoryModal = ({open, onCancel}) => {
                 style={{marginBottom: '15px'}}
             />
             <Form layout='vertical' >
-                <Space.Compact style={{width: '100%', display: 'flex'}} >
+
+                { currentPhase == 0 && 
+                <>
+                    <Space.Compact style={{width: '100%', display: 'flex'}} >
                     <Form.Item name='nameField' style={{width: '50%'}} >
-                        <Input placeholder='Nombre'/>
+                        <Input placeholder='Nombre' onChange={(e) => setName(e.target.value)} />
                     </Form.Item>
                     <Form.Item name='lastNameField' style={{width: '50%'}}>
-                        <Input placeholder='Apellido'/>
+                        <Input placeholder='Apellido' onChange={(e) => setLastname(e.target.value)}/>
                     </Form.Item>
-                </Space.Compact>
-                <Form.Item>
-                    <Select
-                        options={lists.patientTypeList}
-                        placeholder='Tipo de paciente'
-                        onChange={(e) => {
-                            setSelectedPatientType(e);
-                            if(e==0){
-                                setCedulado(false)
-                            }else{
-                                setCedulado(true)
-                            }
-                        }} />
-                </Form.Item>
-                { selectedPatientType == 0 && 
+                    </Space.Compact>
                     <Form.Item>
                         <Select
-                            placeholder='Tiene cedula?'
-                            options={lists.trueFalseList}
+                            options={lists.patientTypeList}
+                            placeholder='Tipo de paciente'
                             onChange={(e) => {
-                                setCedulado(e);
-                                if(cedulado == false){
-                                    setSelectedIdType(2)
+                                setPatientType(e);
+                                if(e==0){
+                                    setCedulado(false)
+                                }else{
+                                    setCedulado(true)
                                 }
                             }} />
                     </Form.Item>
-                }
-                <Space.Compact style={{width: '100%', display: 'flex'}} >
-                    {cedulado ? (
-                        <>
-                            <Form.Item style={{width: '50%'}}>
-                                <Select options={lists.identificationList.slice(0, 2)} placeholder='Tipo de identificacion' defaultValue='V'/>  
-                            </Form.Item>
-                            <Form.Item style={{width: '50%'}}>
-                                <Input placeholder="Numero"/>
-                            </Form.Item>
-                        </>
+                    { patientType == 0 && 
+                        <Form.Item>
+                            <Select
+                                placeholder='Tiene cedula?'
+                                options={lists.trueFalseList}
+                                onChange={(e) => {
+                                    setCedulado(e);
+                                    if(cedulado == false){
+                                        setPatientType(2)
+                                    }
+                                }} />
+                        </Form.Item>
+                    }
+                    <Space.Compact style={{width: '100%', display: 'flex'}} >
+                        {cedulado ? (
+                            <>
+                                <Form.Item style={{width: '50%'}}>
+                                    <Select
+                                        options={lists.identificationList.slice(0, 2)}
+                                        placeholder='Tipo de identificacion'
+                                        defaultValue='V'
+                                        onChange={(e) => setIdType(e.target.value)}
+                                    />  
+                                </Form.Item>
+                                <Form.Item style={{width: '50%'}}>
+                                    <Input placeholder="Numero" onChange={(e) => setIdNumber(e)}/>
+                                </Form.Item>
+                            </>
+                        ):(
+                            <>
+                                <Form.Item style={{width: '50%'}}>
+                                    <Select disabled={true} defaultValue='Codigo' />
+                                </Form.Item>
+                                <Form.Item style={{width: '50%'}}>
+                                    <InputNumber disabled={true} />
+                                </Form.Item>
+                            </>
+                        )}
+                    </Space.Compact>
+                    <Form.Item>
+                        <DatePicker placeholder='Fecha de nacimiento' style={{width: '100%'}} onChange={(a, b) => setBirthDate(a)}/>
+                    </Form.Item>
+                    <Form.Item>
+                        <Select options= {lists.sexList} placeholder='Sexo' onChange={(e) => setSex(e)}/>
+                    </Form.Item>
+                    <Form.Item>
+                        <Input.TextArea autoSize={true} placeholder='Direccion'  onChange={(e) => setAddress(e.target.value)}/>
+                    </Form.Item>
+                    { patientType == 0 ? (
+                        <Form.Item>
+                            <Select options={lists.instructionGradeList.slice(0, 4)} placeholder='Grado de instruccion' onChange={(e) => setInstructionGrade(e)}/>
+                        </Form.Item>
                     ):(
-                        <>
-                            <Form.Item style={{width: '50%'}}>
-                                <Select disabled={true} defaultValue='Codigo' />
-                            </Form.Item>
-                            <Form.Item style={{width: '50%'}}>
-                                <InputNumber disabled={true} />
-                            </Form.Item>
-                        </>
-                    )}
-                </Space.Compact>
-                <Form.Item>
-                    <DatePicker placeholder='Fecha de nacimiento' style={{width: '100%'}}/>
-                </Form.Item>
-                <Form.Item>
-                    <Select options= {lists.sexList} placeholder='Sexo' />
-                </Form.Item>
-                <Form.Item>
-                    <Input.TextArea autoSize={true} placeholder='Direccion' />
-                </Form.Item>
-                { selectedPatientType == 0 ? (
-                    <Form.Item>
-                        <Select options={lists.instructionGradeList.slice(0, 4)} placeholder='Grado de instruccion' />
-                    </Form.Item>
-                ):(
-                    <Form.Item>
-                        <Select options={lists.instructionGradeList} placeholder='Grado de instruccion' />
-                    </Form.Item>
-                ) }
-                
-                <Space.Compact style={{width: '100%', display: 'flex'}} >
+                        <Form.Item>
+                            <Select options={lists.instructionGradeList} placeholder='Grado de instruccion' onChange={(e) => setInstructionGrade(e)}/>
+                        </Form.Item>
+                    ) }
+                </>
+                }
+
+                { currentPhase == 1 && 
+                <>
+                    <Space.Compact style={{width: '100%', display: 'flex'}} >
                     <Form.Item name='bloodType' style={{width: '50%'}}>
-                        <Select options={lists.bloodTypeList} placeholder='tipo de sangre'/>   {/*Averiguar si puedo poner algo como un placeholder aqui*/}
+                        <Select options={lists.bloodTypeList} placeholder='tipo de sangre' onChange={(e) => setBloodType(e)}/>
                     </Form.Item>
                     <Form.Item name='proneToBleeding' style={{width: '50%'}}>
-                        <Select options={lists.trueFalseList} placeholder='Propenso al sangrado'/>
+                        <Select options={lists.trueFalseList} placeholder='Propenso al sangrado' onChange={(e) => setProneToBleeding(e)}/>
                     </Form.Item>
-                </Space.Compact>
-                <Form.Item>
-                    <Select options={lists.raceList} placeholder='Raza'/>
-                </Form.Item>
-                <Form.Item>
-                    <Select options={lists.alimentsList} placeholder='Padecimientos' mode='multiple' onChange={(e) => console.log(e)} />   {/*Este debe ser de seleccion multiple*/}
-                </Form.Item>       
-                <Form.Item>
-                    <Input.TextArea autoSize={true} placeholder='Otros padecimientos'/>
-                </Form.Item>  
-                <h4>Contacto de emergencia</h4>
-                <Space.Compact style={{width: '100%', display: 'flex'}} >
-                    <Form.Item style={{width: '100%'}} >
-                        <Input placeholder='Nombre'/>
+                    </Space.Compact>
+                    <Form.Item>
+                        <Select options={lists.raceList} placeholder='Raza' onChange={(e) => setRace(e)}/>
+                    </Form.Item>
+                    <Form.Item>
+                        <Select options={lists.alimentsList} placeholder='Padecimientos' mode='multiple' onChange={(e) => setAliments(e)} />   {/*Este debe ser de seleccion multiple*/}
                     </Form.Item>       
-                    <Form.Item style={{width: '100%'}} >
-                        <Input placeholder='Telefono'/>
-                    </Form.Item>       
-                </Space.Compact>
+                    <Form.Item>
+                        <Input.TextArea autoSize={true} placeholder='Otros padecimientos' onChange={(e) => setOtherAliments(e)}/>
+                    </Form.Item>  
+                    <h4>Contacto de emergencia</h4>
+                    <Space.Compact style={{width: '100%', display: 'flex'}} >
+                        <Form.Item style={{width: '100%'}} >
+                            <Input placeholder='Nombre' onChange={(e) => setEmergencyName(e.target.value)}/>
+                        </Form.Item>       
+                        <Form.Item style={{width: '100%'}} >
+                            <Input placeholder='Telefono' onChange={(e) => setEmergencyPhone(e.target.value)}/>
+                        </Form.Item>       
+                    </Space.Compact>
+                </>
+                }
             </Form>
         </Modal>
     )
