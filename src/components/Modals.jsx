@@ -1,4 +1,4 @@
-import { Modal, Form, Select, DatePicker, TimePicker, Input, Space, InputNumber } from "antd";
+import { Modal, Form, Select, DatePicker, TimePicker, Input, Space, InputNumber, Button, Steps } from "antd";
 import { useContext, useState, useEffect } from "react";
 import { appContext } from "../context/appContext";
 import * as lists from '../context/lists'
@@ -53,14 +53,42 @@ export const BasicPatientRegisterModal = ({onCancel, open}) => {
                             }
                         }} />
                 </Form.Item>
-                <Space.Compact>
-                    <Form.Item label='Identificacion'>
-                        <Select options={lists.identificationList} />
-                    </Form.Item>
+                { selectedPatientType == 0 && 
                     <Form.Item>
-                        <Input placeholder="Numero"/>
+                        <Select
+                            placeholder='Tiene cedula?'
+                            options={lists.trueFalseList}
+                            onChange={(e) => {
+                                setCedulado(e);
+                                if(cedulado == false){
+                                    setSelectedIdType(2)
+                                }
+                            }} />
                     </Form.Item>
+                }
+
+                <Space.Compact>
+                { cedulado ? (
+                    <>
+                        <Form.Item>
+                            <Select options={lists.identificationList.slice(0, 2)} placeholder='Tipo de identificacion' />
+                        </Form.Item>
+                        <Form.Item>
+                            <Input placeholder="Numero"/>
+                        </Form.Item>
+                    </>
+                ):(
+                    <>
+                        <Form.Item>
+                            <Select options={lists.identificationList} placeholder='Tipo de identificacion' defaultValue='Codigo' disabled={true} />
+                        </Form.Item>
+                        <Form.Item>
+                            <Input placeholder="Numero" disabled={true} />
+                        </Form.Item>
+                    </>
+                ) }
                 </Space.Compact>
+                
                 <Form.Item label='Fecha de nacimiento'>
                     <DatePicker />
                 </Form.Item>
@@ -93,9 +121,49 @@ export const CreateHistoryModal = ({open, onCancel}) => {
     const [selectedPatientType, setSelectedPatientType] = useState(false)
     const [cedulado, setCedulado] = useState(0)
     const [selectedIdType, setSelectedIdType] = useState(false)
+    const [currentPhase, setCurrentPhase] = useState(0)
+
+    const submitHistory = () => {
+        console.log('se envio la historia')
+    }
 
     return(
-        <Modal destroyOnClose open={open} onCancel={onCancel} title='Crear historia'>
+        <Modal
+            destroyOnClose={true}
+            open={open}
+            onCancel={() => {onCancel(); setPhase(false)}}
+            title='Crear historia'
+            footer={[
+                <Button
+                    variant='outlined'
+                    color='danger'
+                    onClick={() => {
+                        if(currentPhase == 1){
+                            setCurrentPhase(0)
+                        }else{
+                            setCurrentPhase(0)
+                            onCancel()
+                        }
+                    }}
+                >{currentPhase == 1 ? ('Volver'):('Cancelar')}</Button>,
+                <Button
+                    type='primary'
+                    onClick={() => {
+                        if(currentPhase == 1){
+                            submitHistory()
+                        }else{
+                            setCurrentPhase(1)
+                        }
+                    }}
+                >{currentPhase == 1 ? ('Guardar'):('Siguiente')}</Button>
+            ]}
+        >
+            <Steps
+                size='small'
+                current={currentPhase}
+                items={[{title: 'Datos personales'}, {title: 'Informacion medica'}]}
+                style={{marginBottom: '15px'}}
+            />
             <Form layout='vertical' >
                 <Space.Compact style={{width: '100%', display: 'flex'}} >
                     <Form.Item name='nameField' style={{width: '50%'}} >
@@ -134,7 +202,7 @@ export const CreateHistoryModal = ({open, onCancel}) => {
                 <Space.Compact style={{width: '100%', display: 'flex'}} >
                     {cedulado ? (
                         <>
-                            <Form.Item style={{width: '50%'}}>  {/*Truncar el arreglo para no mostrar la opcion de codigo*/}
+                            <Form.Item style={{width: '50%'}}>
                                 <Select options={lists.identificationList.slice(0, 2)} placeholder='Tipo de identificacion' defaultValue='V'/>  
                             </Form.Item>
                             <Form.Item style={{width: '50%'}}>
@@ -183,7 +251,7 @@ export const CreateHistoryModal = ({open, onCancel}) => {
                     <Select options={lists.raceList} placeholder='Raza'/>
                 </Form.Item>
                 <Form.Item>
-                    <Select options={lists.alimentsList} placeholder='Padecimientos' />   {/*Este debe ser de seleccion multiple*/}
+                    <Select options={lists.alimentsList} placeholder='Padecimientos' mode='multiple' onChange={(e) => console.log(e)} />   {/*Este debe ser de seleccion multiple*/}
                 </Form.Item>       
                 <Form.Item>
                     <Input.TextArea autoSize={true} placeholder='Otros padecimientos'/>
