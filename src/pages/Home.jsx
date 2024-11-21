@@ -14,6 +14,7 @@ const Home = () => {
 				<HistoryPanel/>
 			)}
 			<Outlet/>
+			{location.pathname == '/home' && <div className='emptySpace'/>}
 		</div>
 	)
 }

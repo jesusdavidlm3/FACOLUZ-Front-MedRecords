@@ -9,14 +9,14 @@ const ContextProvider = ({children}) => {
 	const [messageApi, contextHolder] = message.useMessage()
 
 	return(
-		<appContext.Provider value = {[
+		<appContext.Provider value={{
 			userData,
 			setUserData,
 			logged,
 			setLogged,
 			messageApi,
 			contextHolder
-		]} >
+		}} >
 			{children}
 		</appContext.Provider>
 	)

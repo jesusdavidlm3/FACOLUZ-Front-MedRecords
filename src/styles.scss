@@ -27,9 +27,20 @@ body{
 }
 
 .NavBar{
-	background-color: tomato;
-	width: 100vw;
+	color: white;
+	background-color: var(--moduleColor);
+	width: calc(100vw - 50px);
 	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 25px;
+
+	.Buttons{
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
 }
 
 .Home{
@@ -39,6 +50,10 @@ body{
 	flex-direction: row;
 	align-items: center;
 	background-color: var(--bgColor);
+
+	.emptySpace{
+		@include BasicPage;
+	}
 
 	.LatPanel{
 		width: 20vw;
