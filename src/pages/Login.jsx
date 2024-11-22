@@ -3,14 +3,16 @@ import { useContext, useState } from 'react'
 import { appContext } from '../context/appContext' 
 import { encrypt } from '../functions/hash'
 import { login } from '../client/client'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
+	const navigate = useNavigate()
 	const { messageApi, setuserData, setLogged } = useContext(appContext)
 	const [loading, setLoading] = useState(false)
 
 	const submitLogin = async () => {
-		setLoading(false)
+		{/*setLoading(false)
 		const identification = document.getElementById('identification').value
 		const password = document.getElementById('password').value
 
@@ -19,7 +21,9 @@ const Login = () => {
 			passwordHash: await encrypt(password)
 		}
 		let res = await login(data)
-		console.log(res)
+		console.log(res)*/}
+		setLogged(true)
+		navigate('/home')
 	}
 
 	return(

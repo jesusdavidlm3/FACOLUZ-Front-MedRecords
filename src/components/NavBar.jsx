@@ -9,7 +9,7 @@ const NavBar = () => {
 	return(
 		<div className='NavBar'>
 			<div className='Info'>
-				<h1>Bienvenido</h1>
+				<h1>Bienvenido Dr. Juan Sanchez</h1>
 			</div>
 			<div className='Buttons'>
 				{ location.pathname != '/home' && <Button onClick={() => navigate(-1)} >{'< Volver'}</Button> }

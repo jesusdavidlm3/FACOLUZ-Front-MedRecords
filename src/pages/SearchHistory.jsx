@@ -2,15 +2,36 @@ import { Input } from 'antd'
 import { useState } from 'react'
 
 const SearchHistory = () => {
-    
-    const [showList, setShowList] = useState([])
+
+    const pruebas = [{
+        name: 'Jesus',
+        lastname: 'Lozano',
+        idType: 'V',
+        cedula: '28288269',
+        id: '22255d5d5d5d5d5d7878s'
+    },{
+        name: 'Cesar',
+        lastname: 'Moreno',
+        idType: 'V',
+        cedula: '123456',
+        id: '55s55s5f88f74tg44t'
+    },{
+        name: 'David',
+        lastname: 'Garcia',
+        idType: 'V',
+        cedula: '44688887',
+        id: 'rrr5r5r55f2f4e55e'
+    }]
+    const [showList, setShowList] = useState(pruebas)
 
     return(
         <div className="SearchHistory">
-            <Input.Search placeholder='Ingrese nombre o cedula'/>
+            <div className='searchBar' >
+                <Input.Search placeholder='Ingrese nombre, cedula o codigo del paciente' size='large'/>
+            </div>
             {showList.map(item => (
-                <div classname='listItem'>
-                    <h3>V-00.000.000 Nombre Apellido</h3>
+                <div className='listItem' key={item.id} >
+                    <h3>{item.idType} - {item.cedula} {item.name} {item.lastname}</h3>
                 </div>
             ))}
         </div>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 :root{
 	--bgColor: white;	
 	--moduleColor: #3a0ca3;
@@ -18,12 +20,35 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: start;
+
+	.searchBar{
+		width: calc(100% - 30px);
+		padding: 15px 15px;
+		border-radius: var(--moduleRadius);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: var(--hlColor);
+		margin-bottom: 20px;
+	}
+}
+
+@mixin basicListItem{
+	margin: 5px 20px;
+	padding: 3px 20px;
+	width: calc(100% - 80px);
+	background-color: var(--hlColor);
+	color: white;
+	border-radius: var(--moduleRadius);
+	display: flex;
+	align-items: center;
 }
 
 body{
 	margin: 0px;
 	width: 100vw;
 	height: 100vh;
+	font-family: "Poppins", sans-serif;
 }
 
 .NavBar{
@@ -70,16 +95,20 @@ body{
 
 	.SearchHistory{
 		@include BasicPage;
+		.listItem{
+			@include basicListItem;
+			&:hover{
+				cursor: pointer;
+			}
+		}
 	}
 
 	.SearchDates{
 		@include BasicPage;
 
-		.DatesSearchBar{
-			width: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: space-around;
+		.listItem{
+			@include basicListItem;
+			justify-content: space-between
 		}
 	}
 }
