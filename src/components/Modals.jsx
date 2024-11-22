@@ -118,6 +118,7 @@ export const BasicPatientRegisterModal = ({onCancel, open}) => {
 
 export const CreateHistoryModal = ({open, onCancel}) => {
 
+    //Campos principales
     const [name, setName] = useState(null)
     const [lastname, setLastname] = useState(null)
     const [patientType, setPatientType] = useState(null)
@@ -136,8 +137,26 @@ export const CreateHistoryModal = ({open, onCancel}) => {
     const [emergencyName, setEmergencyName] = useState(null)
     const [emergencyPhone, setEmergencyPhone] = useState(null)
 
+
+    //Campos Opcionales
+    const [cardiovascularAffection, setCardiovascularAfecction] = useState(null)
+    const [hematologicalDisorders, setHematologicalDisorders] = useState(null)
+    const [kidneyDisease, setKidneyDisease] = useState(null) //Este es afecciones renales
+    const [neurologicalAffection, setNeurologicalAffection] = useState(null)
+    const [liverConditions, setLiverConditions] = useState(null) //Esta es afecciones hepaticas
+    const [diabetes, setDiabetes] = useState(null)
+    const [gastrointestinalDisorders, setGastrointestinalDisorders] = useState(null)
+    const [herpes, setHerpes] = useState(null)
+    const [VPH, setVPH] = useState(null)
+    const [ETS, setETS] = useState(null)
+    const [drugAlergies, setDrugAlergies] = useState(null) //Alergias a medicamentos
+
+
+    //Campos de control 
     const [currentPhase, setCurrentPhase] = useState(0)
 
+
+    //Funciones
     const submitHistory = () => {
         console.log('se envio la historia')
         const data = {
@@ -298,7 +317,66 @@ export const CreateHistoryModal = ({open, onCancel}) => {
                     </Form.Item>
                     <Form.Item>
                         <Select options={lists.alimentsList} placeholder='Padecimientos' mode='multiple' onChange={(e) => setAliments(e)} />   {/*Este debe ser de seleccion multiple*/}
-                    </Form.Item>       
+                    </Form.Item>    
+
+                    {/*Campos opcionales segun los padecimientos*/}
+                    { aliments != null && aliments.includes(1) && <Form.Item>
+                        <Input
+                            placeholder='Afeccion cardiovascular'
+                            onChange={(e) => setcardiovascularAffection(e)} />
+                    </Form.Item> }
+                    { aliments != null && aliments.includes(2) && <Form.Item>
+                        <Input
+                            placeholder='Afeccion hematologica'
+                            onChange={(e) => setHematologicalDisorders(e)} />
+                    </Form.Item> }
+                    { aliments != null && aliments.includes(3) && <Form.Item>
+                        <Input
+                            placeholder='Afeccion renal'
+                            onChange={(e) => setKidneyDisease(e)} />
+                    </Form.Item> }
+                    { aliments != null && aliments.includes(4) && <Form.Item>
+                        <Input
+                            placeholder='Afeccion neurologica'
+                            onChange={(e) => setNeurologicalAffection(e)} />
+                    </Form.Item> }
+                    { aliments != null && aliments.includes(5) && <Form.Item>
+                        <Input
+                            placeholder='Afeccion hepatica'
+                            onChange={(e) => setLiverConditions(e)} />
+                    </Form.Item> }
+                    { aliments != null && aliments.includes(6) && <Form.Item>
+                        <Input
+                            placeholder='Diabetes'
+                            onChange={(e) => setDiabetes(e)} />
+                    </Form.Item> }
+                    { aliments != null && aliments.includes(7) && <Form.Item>
+                        <Input
+                            placeholder='Desordenes gastrointestinales'
+                            onChange={(e) => setGastroIntestinalDisorders(e)} />
+                    </Form.Item> }
+                    { aliments != null && aliments.includes(11) && <Form.Item>
+                        <Input
+                            placeholder='Herpes'
+                            onChange={(e) => setHerpes(e)} />
+                    </Form.Item> }
+                    { aliments != null && aliments.includes(13) && <Form.Item>
+                        <Input
+                            placeholder='VPH'
+                            onChange={(e) => setVPH(e)} />
+                    </Form.Item> }
+                    { aliments != null && aliments.includes(14) && <Form.Item>
+                        <Input
+                            placeholder='ETS'
+                            onChange={(e) => setETS(e)} />
+                    </Form.Item> }
+                    { aliments != null && aliments.includes(21) && <Form.Item>
+                        <Input
+                            placeholder='Alergia a medicamentos'
+                            onChange={(e) => setDrugAlergies(e)} />
+                    </Form.Item> }
+                    {/*Final de campos opcionales segun los padecimientos*/}
+
                     <Form.Item>
                         <Input.TextArea autoSize={true} placeholder='Otros padecimientos' onChange={(e) => setOtherAliments(e)}/>
                     </Form.Item>  
