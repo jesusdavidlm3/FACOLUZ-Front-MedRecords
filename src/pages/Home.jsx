@@ -8,11 +8,10 @@ const Home = () => {
 
 	return(
 		<div className='Home'>
-			{location.pathname != '/home/openHistory' || location.pathname != '/home/openDate' ? (
-				<LatPanel/>
-			):(
-				<HistoryPanel/>
-			)}
+			{location.pathname != '/home/openHistory' && location.pathname != '/home/openDate' && <LatPanel/>}
+
+			{(location.pathname == '/home/openHistory' || location.pathname == '/home/openDate') && <HistoryPanel/> }
+
 			<Outlet/>
 			{location.pathname == '/home' && <div className='emptySpace'/>}
 		</div>

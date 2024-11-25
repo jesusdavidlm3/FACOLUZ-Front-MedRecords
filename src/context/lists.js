@@ -29,9 +29,9 @@ export const sexList = [
 ]
 
 export const identificationList = [
-    {label: 'V', value: 0},
-    {label: 'E', value: 1},
-    {label: 'Cod.', value: 2},
+    {label: 'V', value: 1},
+    {label: 'E', value: 2},
+    {label: 'Cod.', value: 0},
 ]
 
 export const trueFalseList = [

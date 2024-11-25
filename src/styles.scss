@@ -6,7 +6,7 @@
 	--borderColor: #4361ee;
 	--hlColor: #7209b7;
 	--moduleRadius: 15px;
-	--shadow: 0px 0px 15px 15px rgba(0, 0, 0, 0.3)
+	--shadow: 0px 0px 10px rgba(0, 0, 0, 0.6)
 }
 
 @mixin BasicPage{
@@ -49,6 +49,28 @@ body{
 	width: 100vw;
 	height: 100vh;
 	font-family: "Poppins", sans-serif;
+	color: white;
+}
+
+.ErrorPage{
+	background-color: tomato;
+	width: 100vw;
+	height: 100vh;
+	margin: 0px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	h3{
+		margin: 0px;
+		transition: all .3s;
+		&:hover{
+			cursor: pointer;
+			transform: scale(1.1);
+			text-shadow: var(--shadow);
+		}
+	}
 }
 
 .NavBar{
@@ -93,12 +115,35 @@ body{
 		gap: 20px;
 	}
 
+	.HistoryPanel{
+		width: 20vw;
+		margin: 10px;
+		padding: 30px;
+		background-color: var(--moduleColor);
+		border-radius: var(--moduleRadius);
+		height: calc(100% - 80px);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		h3{margin: 0px; margin-bottom: 10px}
+
+		h4{
+			margin: 0px;
+			align-self: start;
+			text-align: start;
+		}
+	}
+
 	.SearchHistory{
 		@include BasicPage;
 		.listItem{
 			@include basicListItem;
+			transition: all ease .3s;
 			&:hover{
 				cursor: pointer;
+				transform: scale(1.1);
+				box-shadow: var(--shadow);
 			}
 		}
 	}
@@ -108,8 +153,26 @@ body{
 
 		.listItem{
 			@include basicListItem;
-			justify-content: space-between
+			justify-content: space-between;
 		}
+	}
+
+	.OpenHistory{
+		@include BasicPage;
+
+		.listItem{
+			@include basicListItem;
+			transition: all ease .3s;
+			&:hover{
+				cursor: pointer;
+				transform: scale(1.1);
+				box-shadow: var(--shadow);
+			}
+		}
+	}
+
+	.OpenDate{
+		@include BasicPage;
 	}
 }
 

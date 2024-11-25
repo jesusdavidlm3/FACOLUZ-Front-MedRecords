@@ -1,6 +1,7 @@
 const HistoryPanel = () => {
     return(
         <div className="HistoryPanel">
+            <h3>Informacion de paciente</h3>
             <h4>Nombre</h4>
             <h4>Apellido</h4>
             <h4>Cedula / Codigo</h4>
