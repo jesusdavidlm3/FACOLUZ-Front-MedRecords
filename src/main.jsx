@@ -11,6 +11,7 @@ import OpenHistory from './pages/OpenHistory'
 import SearchDate from './pages/SearchDate'
 import SearchHistory from './pages/SearchHistory'
 import OpenDate from './pages/OpenDate'
+import React from 'react'
 
 const router = createBrowserRouter([{
   path: '/',
