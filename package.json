@@ -1,8 +1,8 @@
 {
-  "name": "luz-odontologia-frontend",
-  "productName": "luz-odontologia-frontend",
+  "name": "facoluz-front-medrecords",
+  "productName": "FACOLUZ-Front-MedRecords ",
   "version": "1.0.0",
-  "description": "luz-odontologia-frontend",
+  "description": "FACOLUZ-Front-MedRecords",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",
