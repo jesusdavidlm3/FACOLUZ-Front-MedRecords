@@ -3,17 +3,17 @@ import { useContext, useState } from 'react'
 import { appContext } from '../context/appContext' 
 import { encrypt } from '../functions/hash'
 import { login } from '../client/client'
-import { useNavigate } from 'react-router-dom'
+import { routerContext } from '../context/routerContext'
 import React from 'react'
 
 const Login = () => {
 
-	const navigate = useNavigate()
-	const { messageApi, setuserData, setLogged } = useContext(appContext)
 	const [loading, setLoading] = useState(false)
+	const {setView} = useContext(routerContext)
+	const { messageApi, setUserData, setLogged } = useContext(appContext)
 
 	const submitLogin = async () => {
-		{/*setLoading(false)
+		setLoading(true)
 		const identification = document.getElementById('identification').value
 		const password = document.getElementById('password').value
 
@@ -22,9 +22,19 @@ const Login = () => {
 			passwordHash: await encrypt(password)
 		}
 		let res = await login(data)
-		console.log(res)*/}
-		setLogged(true)
-		navigate('/home')
+		
+		if(res.status == 200){
+			setUserData(res.data)
+			setLogged(true)
+			setView('Home')
+		}else{
+			messageApi.open({
+				type: 'error',
+				content: res.response.data
+			})
+			setLoading(false)
+		}
+
 	}
 
 	return(

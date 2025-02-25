@@ -1,9 +1,12 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { routerContext } from '../context/routerContext'
 import React from 'react'
 
 const OpenHistory = () => {
-
+    
+    const { view } = useContext(routerContext)
+    //Datos de Prueba
     const pruebas = [{
         date: '24-02-2023',
         doctor: 'Luis Rodriguez'
@@ -20,8 +23,7 @@ const OpenHistory = () => {
         date: '25-11-2024',
         doctor: 'Antonio Banderas'
     } ]
-
-    const navigate = useNavigate()
+    
 
     const [showlist, setShowList] = useState(pruebas)
 
@@ -29,7 +31,7 @@ const OpenHistory = () => {
         <div className='OpenHistory'>
             <h1>Historia</h1>
             {showlist.map(item => (
-                <div className='listItem' onClick={() => navigate('/home/openDate')} >
+                <div className='listItem' onClick={() => view('OpenDate')} >
                     <h3>{item.date} - Atendido por: {item.doctor} </h3>
                 </div>
             ))}

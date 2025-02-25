@@ -1,12 +1,13 @@
+import React from 'react'
 import { useContext, useState } from 'react'
 import { appContext } from '../context/appContext'
-import { useNavigate } from 'react-router-dom'
+import { routerContext } from '../context/routerContext'
 import { Button } from 'antd'
 import { MakeDateModal, BasicPatientRegisterModal, CreateHistoryModal } from './Modals'
 
 const LatPanel = () => {
 
-	const navigate = useNavigate()
+	const {setView} = useContext(routerContext)
 	const { userInfo } = useContext(appContext)
 	const [makeDateModalHandler, setMakeDateModalHandler] = useState(false)
 	const [createHistoryHandler, setCreateHistoryHandler] = useState(false)
@@ -14,10 +15,10 @@ const LatPanel = () => {
 	return(
 		<>
 			<div className='LatPanel'>
-				<Button size='large' onClick={() => navigate('/home/history')}>Buscar historia</Button>
+				<Button size='large' onClick={() => setView('SearchHistory')}>Buscar historia</Button>
 				<Button size='large' onClick={() => setCreateHistoryHandler(true)} >Crear historia</Button>
 				<Button size='large' onClick={() => setMakeDateModalHandler(true)} >Agendar cita</Button>
-				<Button size='large' onClick={() => navigate('/home/dates')}>Buscar citas</Button>
+				<Button size='large' onClick={() => setView('SearchDate')}>Buscar citas</Button>
 			</div>
 
 			<MakeDateModal open={makeDateModalHandler} onCancel={() => setMakeDateModalHandler(false)} />

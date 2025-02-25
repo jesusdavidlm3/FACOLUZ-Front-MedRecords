@@ -489,6 +489,7 @@ const createWindow = () => {
   }
   mainWindow.maximize();
   mainWindow.setMenuBarVisibility(false);
+  mainWindow.webContents.openDevTools();
 };
 require$$3$1.app.whenReady().then(() => {
   createWindow();

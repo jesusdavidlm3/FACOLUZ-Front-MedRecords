@@ -1,9 +1,11 @@
 import { Input } from 'antd'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useContext, useState } from 'react'
+import { routerContext } from '../context/routerContext'
 import React from 'react'
 
 const SearchHistory = () => {
+
+    const {view} = useContext(routerContext)
 
     const pruebas = [{
         name: 'Jesus',
@@ -25,7 +27,6 @@ const SearchHistory = () => {
         id: 'rrr5r5r55f2f4e55e'
     }]
 
-    const navigate = useNavigate()
 
     const [showList, setShowList] = useState(pruebas)
 
@@ -35,7 +36,7 @@ const SearchHistory = () => {
                 <Input.Search placeholder='Ingrese nombre, cedula o codigo del paciente' size='large'/>
             </div>
             {showList.map(item => (
-                <div className='listItem' key={item.id} onClick={() => navigate('/home/openHistory')} >
+                <div className='listItem' key={item.id} onClick={() => view('OpenHistory')} >
                     <h3>{item.idType} - {item.cedula} {item.name} {item.lastname}</h3>
                 </div>
             ))}
