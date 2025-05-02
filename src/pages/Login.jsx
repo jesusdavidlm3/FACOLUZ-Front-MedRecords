@@ -22,7 +22,7 @@ const Login = () => {
 			passwordHash: await encrypt(password)
 		}
 		let res = await login(data)
-		
+		console.log(res)
 		if(res.status == 200){
 			setUserData(res.data)
 			setLogged(true)
@@ -40,7 +40,7 @@ const Login = () => {
 	return(
 		<div className='Login'>
 			<Form disabled={loading} className='loginForm'>
-				<h1>Iniciar sesion</h1>
+				<h1>Control de historias</h1>
 				<Form.Item name='identification'>
 					<Input placeholder='Identificacion'/>
 				</Form.Item>
