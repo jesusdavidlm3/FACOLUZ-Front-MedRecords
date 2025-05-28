@@ -1,6 +1,7 @@
-import { Input } from 'antd'
+import { Input, Divider, List, Button, Tooltip } from 'antd'
 import { useContext, useState } from 'react'
 import { routerContext } from '../context/routerContext'
+import { EyeOutlined } from '@ant-design/icons' 
 import React from 'react'
 
 const SearchHistory = () => {
@@ -35,11 +36,17 @@ const SearchHistory = () => {
             <div className='searchBar' >
                 <Input.Search placeholder='Ingrese nombre, cedula o codigo del paciente' size='large'/>
             </div>
-            {showList.map(item => (
-                <div className='listItem' key={item.id} onClick={() => view('OpenHistory')} >
-                    <h3>{item.idType} - {item.cedula} {item.name} {item.lastname}</h3>
-                </div>
-            ))}
+            <Divider>Historias medicas</Divider>
+            <List bordered>
+                {showList.map(item => (
+                    <List.Item className='listItem' key={item.id}>
+                        <h3>{item.idType} - {item.cedula} {item.name} {item.lastname}</h3>
+                        <Tooltip title='Ver historia'>
+                            <Button shape='circle' icon={<EyeOutlined />} size='large'/>
+                        </Tooltip>
+                    </List.Item>
+                ))}
+            </List>
         </div>
     )
 }

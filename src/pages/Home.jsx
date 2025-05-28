@@ -7,7 +7,8 @@ const Home = () => {
 
 	return(
 		<div className='Home'>
-			<h1>Bienvenido al modulo de Control de Historias</h1>
+			<h1>Modulo historias Medicas</h1>
+			<h4>Seleccione una opcion en el menu lateral para empezar</h4>
 		</div>
 	)
 }

@@ -54,16 +54,12 @@
 // 	}
 // }
 
-// @mixin basicListItem{
-// 	margin: 5px 20px;
-// 	padding: 3px 20px;
-// 	width: calc(100% - 80px);
-// 	background-color: var(--hlColor);
-// 	color: white;
-// 	border-radius: var(--moduleRadius);
-// 	display: flex;
-// 	align-items: center;
-// }
+@mixin basicListItem{
+	padding: 0 15px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 
 body{
 	margin: 0px;
@@ -232,6 +228,9 @@ body{
 
 .SearchHistory{
 	@include pageBasis;
+	.listItem{
+		@include basicListItem;
+	}
 }
 
 .SearchDates{

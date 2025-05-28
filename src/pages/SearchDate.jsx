@@ -1,5 +1,5 @@
-import { Input, DatePicker, Button, Tooltip } from 'antd'
-import {EditOutlined} from '@ant-design/icons'
+import { Input, DatePicker, Button, Tooltip, List, Divider } from 'antd'
+import {AuditOutlined} from '@ant-design/icons'
 import { useState } from 'react'
 import React from 'react'
 
@@ -45,14 +45,17 @@ const SearchDate = () => {
                 <Input.Search placeholder='Ingrese nombre, cedula o codigo' style={{width: '40%'}} size='large' />
                 <DatePicker style={{width: '40%'}} size='large' placeholder='Buscar citas por fecha' />
             </div>
-            {showList.map(item => (
-                <div className='listItem' key={item.id} >
-                    <h3>{item.idType}-{item.cedula} {item.patientName} {item.patientLastname} - Dr. {item.doctorName} {item.doctorLastname} - {item.date} - {item.time} </h3>
-                    <Tooltip title='Editar' >
-                        <Button shape='circle' icon={<EditOutlined />} size='large' />
-                    </Tooltip>
-                </div>
-            ))}
+            <Divider>Listado de citas</Divider>
+            <List bordered>
+                {showList.map(item => (
+                    <List.Item style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 15px'}}>
+                        <h3>{item.date} - {item.time} - {item.idType}-{item.cedula} {item.patientName} {item.patientLastname} - Dr. {item.doctorName} {item.doctorLastname} </h3>
+                        <Tooltip title='Atender' >
+                            <Button shape='circle' icon={<AuditOutlined />} size='large' />
+                        </Tooltip>
+                    </List.Item>
+                ))}
+            </List>
         </div>
     )
 }
