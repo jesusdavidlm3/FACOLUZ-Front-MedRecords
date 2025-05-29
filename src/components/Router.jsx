@@ -8,6 +8,7 @@ import OpenHistory from "../pages/OpenHistory";
 import SearchDate from "../pages/SearchDate";
 import SearchHistory from "../pages/SearchHistory";
 import NewDate from "../pages/NewDate";
+import HistoryForm from "../pages/HistoryForm";
 
 const Router = () => {
 
@@ -22,6 +23,7 @@ const Router = () => {
             case "SearchDate": return <SearchDate/>
             case "SearchHistory": return <SearchHistory/>
             case "NewDate": return <NewDate/>
+            case "HistoryForm": return <HistoryForm/>
             default: return <ErrorPage/>
         }
     } catch (err) {
