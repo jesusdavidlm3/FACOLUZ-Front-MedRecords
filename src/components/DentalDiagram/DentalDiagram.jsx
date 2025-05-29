@@ -52,15 +52,19 @@ const DentalDiagram = ({children, saveData}) => {
                         {[...Array(5)].map(i => {
                             const isChecked = document.getElementById(`tooth_${tooth}_area_${i}`)
                             let divActive = 'false'; //puede ser necesario cambiarlo por un useState si no renderiza cambios
-                            
                             return(<>
-                                <input type='checkbox' className='dental_diagram_checkbox' id={`tooth_${tooth}_area_${i}`}/>
-                                {i + 1 == 1 && <div className={`visual_checkbox_dental_diagram_0 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                                {i + 1 == 2 && <div className={`visual_checkbox_dental_diagram_1 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                                {i + 1 == 3 && <div className={`visual_checkbox_dental_diagram_2 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                                {i + 1 == 4 && <div className={`visual_checkbox_dental_diagram_3 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                                {i + 1 == 5 && <div className={`visual_checkbox_dental_diagram_4 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                            </>)})}
+                            <input type='checkbox' className='dental_diagram_checkbox' id={`tooth_${tooth}_area_${i}`}/>
+                            <div className={`visual_checkbox_dental_diagram_${i} ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />
+                            </>)
+                            // return(<>
+                            //     <input type='checkbox' className='dental_diagram_checkbox' id={`tooth_${tooth}_area_${i}`}/>
+                            //     {i + 1 == 1 && <div className={`visual_checkbox_dental_diagram_0 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
+                            //     {i + 1 == 2 && <div className={`visual_checkbox_dental_diagram_1 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
+                            //     {i + 1 == 3 && <div className={`visual_checkbox_dental_diagram_2 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
+                            //     {i + 1 == 4 && <div className={`visual_checkbox_dental_diagram_3 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
+                            //     {i + 1 == 5 && <div className={`visual_checkbox_dental_diagram_4 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
+                            // </>)
+                        })}
                     </div>
                 ))}
             </div>
@@ -76,11 +80,12 @@ const DentalDiagram = ({children, saveData}) => {
                                 
                                 return(<>
                                     <input type='checkbox' className='dental_diagram_checkbox' id={`tooth_${tooth}_area_${i+1}`}/>
-                                    {i + 1 == 1 && <div className={`visual_checkbox_dental_diagram_0 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
+                                    <div className={`visual_checkbox_dental_diagram_${i} ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />
+                                    {/* {i + 1 == 1 && <div className={`visual_checkbox_dental_diagram_0 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
                                     {i + 1 == 2 && <div className={`visual_checkbox_dental_diagram_1 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
                                     {i + 1 == 3 && <div className={`visual_checkbox_dental_diagram_2 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
                                     {i + 1 == 4 && <div className={`visual_checkbox_dental_diagram_3 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                                    {i + 1 == 5 && <div className={`visual_checkbox_dental_diagram_4 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
+                                    {i + 1 == 5 && <div className={`visual_checkbox_dental_diagram_4 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />} */}
                                 </>)})}
                         </div>
                     ))}
