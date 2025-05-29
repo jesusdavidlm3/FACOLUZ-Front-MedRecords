@@ -24,7 +24,7 @@ const LatPanel = () => {
                 <Button className='Button' size={'large'} onClick={()=>{setView('Home')}} variant='solid' icon={<HomeOutlined />}> <p className='invisible'>Inicio</p></Button> 
                 <Button className='Button' size={'large'} onClick={()=>{setView('SearchHistory')}} variant='solid' icon={<SolutionOutlined />}><p className='invisible'>Buscar Historia</p></Button> 
                 <Button className='Button' size={'large'} variant='solid' icon={<UserOutlined />}> <p className='invisible'>Crear Historia</p></Button> 
-                <Button className='Button' size={'large'} variant='solid' icon={<UsergroupDeleteOutlined />}><p className='invisible'>Agendar citas</p></Button> 
+                <Button className='Button' size={'large'} onClick={()=>setView("NewDate")} variant='solid' icon={<UsergroupDeleteOutlined />}><p className='invisible'>Agendar citas</p></Button> 
                 <Button className='Button' size={'large'} onClick={()=>{setView('SearchDate')}} variant='solid' icon={<SolutionOutlined />}><p className='invisible'>Buscar cita</p></Button> 
                 <Button className='Button' size={'large'} onClick={()=>{setConfirmLogout(true)}} variant='solid' icon={<LogoutOutlined />} color='danger'><p className='invisible' color='danger'>Cerrar Sesion</p></Button> 
             </div>
