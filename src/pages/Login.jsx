@@ -13,6 +13,7 @@ const Login = () => {
 	const { messageApi, setUserData, setLogged } = useContext(appContext)
 
 	const submitLogin = async () => {
+		console.log("login")
 		setLoading(true)
 		const identification = document.getElementById('identification').value
 		const password = document.getElementById('password').value
@@ -39,7 +40,7 @@ const Login = () => {
 
 	return(
 		<div className='Login'>
-			<Form disabled={loading} className='loginForm'>
+			<Form disabled={loading} className='loginForm' onFinish={submitLogin}>
 				<h1>Control de historias</h1>
 				<Form.Item name='identification'>
 					<Input placeholder='Identificacion'/>
@@ -48,7 +49,7 @@ const Login = () => {
 					<Input.Password placeholder='Contraseña'/>
 				</Form.Item>
 
-				<Button onClick={submitLogin}>Iniciar Sesion</Button>
+				<Button htmlType='submit' onClick={submitLogin}>Iniciar Sesion</Button>
 			</Form>
 		</div>
 	)
