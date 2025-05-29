@@ -29,9 +29,9 @@ const NewDate = () => {
                     <Form.Item label="Sexo">
                         <Select/>
                     </Form.Item>
-                    {/* <Form.Input label="Fecha de nacimiento">
+                    <Form.Item label="Fecha de nacimiento">
                         <DatePicker/>
-                    </Form.Input> */}
+                    </Form.Item>
                     <Form.Item label="Lugar de nacimiento">
                         <Input/>
                     </Form.Item>
