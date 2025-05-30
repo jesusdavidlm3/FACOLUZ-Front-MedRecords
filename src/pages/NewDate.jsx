@@ -16,7 +16,7 @@ const NewDate = () => {
                 <Form.Item label="Cedula del Paciente">
                     <Input.Search onSearch={e => verifyPatient(e)}/>
                 </Form.Item>
-                {(patientExist == null || patientExist == false) ? (<>
+                {(patientExist != null && patientExist == false) && (<>
                     <h4 style={{color: 'tomato'}}>No se ha encontrado ningun paciente con esta cedula o codigo, registre al paciente</h4>
                     <Space>
                         <Form.Item label="Nombre">
@@ -44,11 +44,11 @@ const NewDate = () => {
                     </Form.Item><Form.Item label="Direccion">
                         <Input.TextArea/>
                     </Form.Item>
-                </>):(<>
+                </>)}
+                {(patientExist != null && patientExist == true) && (<>
                     <h3>Nombre: </h3>
                     <h3>Edad: </h3>
-                    <h3>Telefono: </h3>
-                    <h3>Direccion: </h3>
+
                 </>)}
 
                 {patientExist != null && (<>
