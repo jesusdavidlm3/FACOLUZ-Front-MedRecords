@@ -22,12 +22,9 @@ const LatPanel = () => {
 
             <div className='buttons'>
                 <Button className='Button' size={'large'} onClick={()=>{setView('Home')}} variant='solid' icon={<HomeOutlined />}> <p className='invisible'>Inicio</p></Button> 
-                {/* <Button className='Button' size={'large'} onClick={()=>{setView('OpenDate')}} variant='solid' icon={<UsergroupDeleteOutlined />}><p className='invisible'>Agendar citas</p></Button>  */}
-                <Button className='Button' size={'large'} onClick={()=>{setView('SearchHistory')}} variant='solid' icon={<SolutionOutlined />}><p className='invisible'>Buscar Historia</p></Button> 
-                {/* <Button className='Button' size={'large'} variant='solid' icon={<UserOutlined />}> <p className='invisible'>Crear Historia</p></Button>  */}
-                {/* <Button className='Button' size={'large'} onClick={()=>setView("NewDate")} variant='solid' icon={<UsergroupDeleteOutlined />}><p className='invisible'>Agendar citas</p></Button>  */}
-                <Button className='Button' size={'large'} onClick={()=>{setView('SearchDate')}} variant='solid' icon={<SolutionOutlined />}><p className='invisible'>Buscar cita</p></Button> 
-                {/* <Button className='Button' size={'large'} onClick={()=>{setView("HistoryForm")}} variant='solid' icon={<LogoutOutlined />} color='danger'><p className='invisible' color='danger'>Formulario de Historias</p></Button>  */}
+                <Button className='Button' size={'large'} onClick={()=>{setView('History')}} variant='solid' icon={<SolutionOutlined />}><p className='invisible'>Historia</p></Button> 
+                <Button className='Button' size={'large'} onClick={()=>{setView('CurrentDate')}} variant='solid' icon={<SolutionOutlined />}><p className='invisible'>Cita actual</p></Button> 
+                <Button className='Button' size={'large'} onClick={()=>{setView('DateList')}} variant='solid' icon={<SolutionOutlined />}><p className='invisible'>Listado de citas</p></Button> 
                 <Button className='Button' size={'large'} onClick={()=>{setConfirmLogout(true)}} variant='solid' icon={<LogoutOutlined />} color='danger'><p className='invisible' color='danger'>Cerrar Sesion</p></Button> 
             </div>
 

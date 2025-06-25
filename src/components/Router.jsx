@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Home from "../pages/Home";
 import OpenDate from "../pages/OpenDate";
 import OpenHistory from "../pages/OpenHistory";
-import SearchDate from "../pages/SearchDate";
+import DateList from "../pages/DateList";
 import SearchHistory from "../pages/SearchHistory";
 import NewDate from "../pages/NewDate";
 import HistoryForm from "../pages/HistoryForm";
@@ -20,7 +20,7 @@ const Router = () => {
             case "Login": return <Login/>
             case "OpenDate": return <OpenDate/>
             case "OpenHistory": return <OpenHistory/>
-            case "SearchDate": return <SearchDate/>
+            case "DateList": return <DateList/>
             case "SearchHistory": return <SearchHistory/>
             case "NewDate": return <NewDate/>
             case "HistoryForm": return <HistoryForm/>

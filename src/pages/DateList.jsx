@@ -3,7 +3,7 @@ import {AuditOutlined} from '@ant-design/icons'
 import { useState } from 'react'
 import React from 'react'
 
-const SearchDate = () => {
+const DateList = () => {
 
     const pruebas = [{
         patientName: 'Jesus',
@@ -60,4 +60,4 @@ const SearchDate = () => {
     )
 }
 
-export default SearchDate
+export default DateList;
