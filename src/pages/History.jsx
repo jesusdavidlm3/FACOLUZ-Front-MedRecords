@@ -4,7 +4,7 @@ import { Divider } from 'antd'
 
 const History = () => {
 
-    const { historyData } = useContext(historyContext)
+    // const { historyData } = useContext(historyContext)
 
     return(
         <div className="history">

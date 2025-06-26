@@ -1,7 +1,7 @@
 import { Input, DatePicker, Button, Tooltip, List, Divider } from 'antd'
 import {AuditOutlined} from '@ant-design/icons'
-import { useState } from 'react'
-import React from 'react'
+import React, { useState } from 'react'
+import {  } from '../client/client'
 
 const DateList = () => {
 
@@ -41,10 +41,6 @@ const DateList = () => {
 
     return(
         <div className='SearchDates'>
-            <div className="searchBar">
-                <Input.Search placeholder='Ingrese nombre, cedula o codigo' style={{width: '40%'}} size='large' />
-                <DatePicker style={{width: '40%'}} size='large' placeholder='Buscar citas por fecha' />
-            </div>
             <Divider>Listado de citas</Divider>
             <List bordered>
                 {showList.map(item => (

@@ -3,12 +3,10 @@ import { routerContext } from "../context/routerContext";
 import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
-import OpenDate from "../pages/OpenDate";
-import OpenHistory from "../pages/OpenHistory";
 import DateList from "../pages/DateList";
-import SearchHistory from "../pages/SearchHistory";
-import NewDate from "../pages/NewDate";
-import HistoryForm from "../pages/HistoryForm";
+import FinishHistory from "../pages/FinishHistory"
+import History from "../pages/History"
+import CurrentDate from '../pages/CurrentDate'
 
 const Router = () => {
 
@@ -18,12 +16,10 @@ const Router = () => {
         switch(view){
             case "Home": return <Home/>
             case "Login": return <Login/>
-            case "OpenDate": return <OpenDate/>
-            case "OpenHistory": return <OpenHistory/>
             case "DateList": return <DateList/>
-            case "SearchHistory": return <SearchHistory/>
-            case "NewDate": return <NewDate/>
-            case "HistoryForm": return <HistoryForm/>
+            case "CurrentDate": return <CurrentDate/>
+            case "FinishHistory": return <FinishHistory/>
+            case "History": return <History/>
             default: return <ErrorPage/>
         }
     } catch (err) {
