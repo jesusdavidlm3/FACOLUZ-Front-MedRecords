@@ -1,9 +1,17 @@
 import { Input, DatePicker, Button, Tooltip, List, Divider } from 'antd'
 import {AuditOutlined} from '@ant-design/icons'
-import React, { useState } from 'react'
-import {  } from '../client/client'
+import React, { useState, useEffect } from 'react'
+import { getDatesList } from '../client/client'
 
 const DateList = () => {
+
+    useEffect(() => {
+        getInfo()
+    })
+
+    const getInfo = async() => {
+        getDatesList()
+    }
 
     const pruebas = [{
         patientName: 'Jesus',
@@ -40,7 +48,7 @@ const DateList = () => {
     const [showList, setShowList] = useState(pruebas)
 
     return(
-        <div className='SearchDates'>
+        <div className='DateList'>
             <Divider>Listado de citas</Divider>
             <List bordered>
                 {showList.map(item => (

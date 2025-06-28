@@ -13,7 +13,6 @@ const Login = () => {
 	const { messageApi, setUserData, setLogged } = useContext(appContext)
 
 	const submitLogin = async () => {
-		console.log("login")
 		setLoading(true)
 		const identification = document.getElementById('identification').value
 		const password = document.getElementById('password').value

@@ -30,30 +30,6 @@
 	align-items: center;
 }
 
-// @mixin BasicPage{
-// 	width: 80vw;
-// 	margin: 10px;
-// 	padding: 30px;
-// 	background-color: var(--moduleColor);
-// 	border-radius: var(--moduleRadius);
-// 	height: calc(100% - 80px);
-// 	display: flex;
-// 	flex-direction: column;
-// 	align-items: center;
-// 	justify-content: start;
-
-// 	.searchBar{
-// 		width: calc(100% - 30px);
-// 		padding: 15px 15px;
-// 		border-radius: var(--moduleRadius);
-// 		display: flex;
-// 		align-items: center;
-// 		justify-content: space-between;
-// 		background-color: var(--hlColor);
-// 		margin-bottom: 20px;
-// 	}
-// }
-
 @mixin basicListItem{
 	padding: 0 15px;
 	display: flex;
@@ -229,53 +205,18 @@ body{
 	}
 }
 
-.SearchHistory{
-	@include pageBasis;
-	.listItem{
-		@include basicListItem;
-	}
-}
-
-.SearchDates{
+.DateList{
 	@include pageBasis;
 }
 
-.OpenDate{
-	@include pageBasis;
-	align-items: center;
-	h1{
-		font-size: 30px;
-		margin: 0px;
-		padding: 1vh 30vw;
-		border-bottom: 2px solid black;
-	}
-	h2{
-		font-size: 20px;
-		margin: 0px;
-	}
-	Form{
-		margin: 5vh 10vw ;
-		width: 60vw;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-	}
-	#dateLine{
-		display: flex;
-		flex-direction: row;
-		justify-content: space-evenly;
-		
-	}
-}
-
-.OpenHistory{
+.CurrentDate{
 	@include pageBasis;
 }
 
-.SearchHistory{
+.FinishHistory{
 	@include pageBasis;
 }
 
-.NewDate{
+.History{
 	@include pageBasis;
 }
