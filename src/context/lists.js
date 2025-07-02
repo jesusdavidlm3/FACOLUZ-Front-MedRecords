@@ -119,3 +119,11 @@ export const ethnicityList = [
     {label: "Japreria", value: 5},
     {label: "Otros", value: 6},
 ]
+
+export const menstruationCicle = [
+    {label: "Ausente", value: 1},
+    {label: "Normal", value: 2},
+    {label: "Abundante", value: 3},
+    {label: "Poco", value: 4},
+
+]

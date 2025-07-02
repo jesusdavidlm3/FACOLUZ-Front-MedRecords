@@ -20,7 +20,7 @@ const DateContextProvider = ({children}) => {
     const [cancerLocation, setCancerLocation] = useState()
     const [cancerDate, setCancerDate] = useState()
     const [menstruation, setMenstruation] = useState()
-    const [pregnacy, setPrenacy] = useState()
+    const [pregnacy, setPregnacy] = useState()
     const [pregnacyTime, setPregnacyTime] = useState()
     const [pregnacyControl, setPregnacyControl] = useState()
 
@@ -61,7 +61,7 @@ const DateContextProvider = ({children}) => {
             menstruation,
             setMenstruation,
             pregnacy,
-            setPrenacy,
+            setPregnacy,
             pregnacyTime,
             setPregnacyTime,
             pregnacyControl,

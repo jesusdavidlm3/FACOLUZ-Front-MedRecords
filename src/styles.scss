@@ -2,7 +2,7 @@
 
 :root{
 	--bgColor: #660099;
-	--moduleColor: #ffffff;
+	--moduleColor: #fcf8f8;
 	--bgColorLogin: #ffffff;
 	--moduleColorLogin: #660099;
 	--listItemColor: #022C53;
@@ -11,7 +11,7 @@
 }
 
 @mixin pageBasis{
-	background-color: white;
+	background-color: var(--moduleColor);
 	margin: 20px;
 	padding: 20px;
 	width: calc(93vw - 40px);
@@ -213,7 +213,15 @@ body{
 	@include pageBasis;
 	display: flex;
 	flex-direction: column;
-	align-items: center
+	align-items: center;
+
+	.cardsContainer{
+		display: flex;
+		gap: 15px;
+		margin: 15px;
+		justify-content: center;
+		flex-wrap: wrap
+	}
 }
 
 .FinishHistory{
