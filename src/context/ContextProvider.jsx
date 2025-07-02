@@ -8,6 +8,7 @@ const ContextProvider = ({children}) => {
 	const [userData, setUserData] = useState('')
 	const [logged, setLogged] = useState(false)
 	const [messageApi, contextHolder] = message.useMessage()
+	const [attending, setAttending] = useState(false)
 
 	return(
 		<appContext.Provider value={{
@@ -16,7 +17,9 @@ const ContextProvider = ({children}) => {
 			logged,
 			setLogged,
 			messageApi,
-			contextHolder
+			contextHolder,
+			attending,
+			setAttending
 		}} >
 			{children}
 		</appContext.Provider>
