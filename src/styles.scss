@@ -211,6 +211,9 @@ body{
 
 .CurrentDate{
 	@include pageBasis;
+	display: flex;
+	flex-direction: column;
+	align-items: center
 }
 
 .FinishHistory{
@@ -219,4 +222,8 @@ body{
 
 .History{
 	@include pageBasis;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	h3,h1{margin: 0;}
 }

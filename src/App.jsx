@@ -3,6 +3,8 @@ import {routerContext} from './context/routerContext';
 import Router from './components/Router';
 import LatPanel from './components/LatPanel';
 import ContextProvider from './context/ContextProvider';
+import DateContextProvider from "./context/DateContextProvider";
+import HistoryContextProvider from "./context/HistoryContextProvider";
 
 const App = () => {
 
@@ -12,7 +14,11 @@ const App = () => {
         <ContextProvider>
             <div className="Root">
                 {view != "Login" && <LatPanel/>}
-                <Router />
+                <HistoryContextProvider>
+                <DateContextProvider>
+                    <Router />
+                </DateContextProvider>
+                </HistoryContextProvider>
             </div>
         </ContextProvider>
     )

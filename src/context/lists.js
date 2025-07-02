@@ -1,6 +1,10 @@
+export function searchOnList(list, id){
+    return list.find(item => item.value == id).label
+}
+
 export const instructionGradeList = [
-    {label: 'Ninguno', value: 0},
-    {label: 'Prescolar', value: 1},
+    {label: 'Ninguno', value: 1},
+    {label: 'Prescolar', value: 2},
     {label: 'Primaria', value: 3},
     {label: 'Bachillerato', value: 4},
     {label: 'Universitario', value: 5},
@@ -8,30 +12,25 @@ export const instructionGradeList = [
 ]
 
 export const bloodTypeList = [
-    {label: 'A+', value: 0},
-    {label: 'O+', value: 1},
-    {label: 'B+', value: 2},
-    {label: 'AB+', value: 3},
-    {label: 'A-', value: 4},
-    {label: 'O-', value: 5},
-    {label: 'B-', value: 6},
-    {label: 'AB-', value: 7},
-]
-
-export const patientTypeList = [
-    {label: 'Niño', value: 0},
-    {label: 'Adulto', value: 1}
+    {label: 'A+', value: 1},
+    {label: 'A-', value: 2},
+    {label: 'B+', value: 3},
+    {label: 'B-', value: 4},
+    {label: 'AB+', value: 5},
+    {label: 'AB-', value: 6},
+    {label: 'O+', value: 7},
+    {label: 'O-', value: 8},
 ]
 
 export const sexList = [
-    {label: 'Masculino', value: 0},
-    {label: 'Femenino', value: 1}
+    {label: 'Masculino', value: 1},
+    {label: 'Femenino', value: 2}
 ]
 
 export const identificationList = [
     {label: 'V', value: 1},
     {label: 'E', value: 2},
-    {label: 'Cod.', value: 0},
+    {label: 'Cod.', value: 3},
 ]
 
 export const trueFalseList = [
@@ -40,10 +39,10 @@ export const trueFalseList = [
 ]
 
 export const raceList = [
-    {label: 'Blanco', value: 0},
-    {label: 'Negro', value: 1},
-    {label: 'Moreno', value: 2},
-    {label: 'Indigena', value: 3},
+    {label: 'Blanco', value: 1},
+    {label: 'Negro', value: 2},
+    {label: 'Moreno', value: 3},
+    {label: 'Indigena', value: 4},
 ]
 
 export const alimentsList = [
@@ -72,4 +71,51 @@ export const alimentsList = [
     {label: 'Enfermedades infectocontagiosas', value: 22},
     {label: 'Afecciones O.R.L.', value: 23},
     {label: 'Dificultades de aprendizaje', value: 24},
+]
+
+export const userTypeList = [
+    {label: 'Administrador de sistemas', value: 0},
+    {label: 'Docente', value: 1},
+    {label: 'Estudiante', value: 2},
+    {label: 'Administrador de estudios', value: 3},
+]
+
+export const dateStatus = [
+    {label: 'Pendiente', value: 1},
+    {label: 'Atendida', value: 2},
+    {label: 'Cancelada', value: 3},
+]
+
+export const relationshipType = [
+    {label: 'Madre', value: 1},
+    {label: 'Padre', value: 2},
+    {label: 'Abuelo/a', value: 4},
+    {label: 'Hermano/a', value: 5},
+    {label: 'Nieto/a', value: 6},
+    {label: 'Hijo/a', value: 7},
+    {label: 'Esposo/a', value: 8},
+    {label: 'Tio/a', value: 9},
+    {label: 'Sobrino/a', value: 10},
+    {label: 'Otros', value: 11},
+]
+
+export const listOfThree = [
+    {label: 'Si', value: 1},
+    {label: 'No', value: 2},
+    {label: 'No Sabe', value: 3}
+]
+
+export const homeOwnership = [
+    {label: 'Familiar', value: 1},
+    {label: 'Propia', value: 2},
+    {label: 'Alquilada', value: 3},
+]
+
+export const ethnicityList = [
+    {label: "Wayuu", value: 1},
+    {label: "Añu", value: 2},
+    {label: "Bari", value: 3},
+    {label: "Yukpa", value: 4},
+    {label: "Japreria", value: 5},
+    {label: "Otros", value: 6},
 ]

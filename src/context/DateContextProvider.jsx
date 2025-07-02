@@ -1,35 +1,71 @@
 import { dateContext } from "./dateContext";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const DateContextProvider = ({children}) => {
 
-    const [id, setId] = useState()
-    const [name, setName] = useState()
-    const [birthDate, setBirthDate] = useState()
-    const [sex, setSex] = useState()
-    const [birthPlace, setBirthPlace] = useState()
-    const [phone, setPhone] = useState()
-    const [municipality, setMunicipality] = useState()
-    const [city, setCity] = useState()
-    const [address, setAddress] = useState()
-    const [date, setDate] = useState()
-    const [time, setTime] = useState()
-    const [doctorId, setDoctorId] = useState()
+    const [consultationReason, setConsultationReason] = useState()
+    const [currentDisease, setCurrentDisease] = useState()
+    const [treatment, setTreatment] = useState()
+    const [treatmentDescription, setTreatmentDescription] = useState()
+    const [lastDate, setLastDate] = useState()
+    const [bifosfonato, setBifosfonato] = useState()
+    const [bifosfonatoDescription, setBifosfonatoDescription] = useState()
+    const [anesthesia, setAnesthesia] = useState()
+    const [anesthesiaDescription, setAnesthesiaDescription] = useState()
+    const [alergy, setAlergy] = useState()
+    const [alergyDescription, setAlergyDescription] = useState()
+    const [cancer, setCancer] = useState()
+    const [cancerType, setCancerType] = useState()
+    const [cancerTreatment, setCancerTreatment] = useState()
+    const [cancerLocation, setCancerLocation] = useState()
+    const [cancerDate, setCancerDate] = useState()
+    const [menstruation, setMenstruation] = useState()
+    const [pregnacy, setPrenacy] = useState()
+    const [pregnacyTime, setPregnacyTime] = useState()
+    const [pregnacyControl, setPregnacyControl] = useState()
 
     return(
         <dateContext.Provider value={{
-            id, setId,
-            name, setName,
-            birthDate, setBirthDate,
-            sex, setSex,
-            birthPlace, setBirthPlace,
-            phone, setPhone,
-            municipality, setMunicipality,
-            city, setCity,
-            address, setAddress,
-            date, setDate,
-            time, setTime,
-            doctorId, setDoctorId
+            consultationReason,
+            setConsultationReason,
+            currentDisease,
+            setCurrentDisease,
+            treatment,
+            setTreatment,
+            treatmentDescription,
+            setTreatmentDescription,
+            lastDate,
+            setLastDate,
+            bifosfonato,
+            setBifosfonato,
+            bifosfonatoDescription,
+            setBifosfonatoDescription,
+            anesthesia,
+            setAnesthesia,
+            anesthesiaDescription,
+            setAnesthesiaDescription,
+            alergy,
+            setAlergy,
+            alergyDescription,
+            setAlergyDescription,
+            cancer,
+            setCancer,
+            cancerType,
+            setCancerType,
+            cancerTreatment,
+            setCancerTreatment,
+            cancerLocation,
+            setCancerLocation,
+            cancerDate,
+            setCancerDate,
+            menstruation,
+            setMenstruation,
+            pregnacy,
+            setPrenacy,
+            pregnacyTime,
+            setPregnacyTime,
+            pregnacyControl,
+            setPregnacyControl,
         }}>
             {children}
         </dateContext.Provider>
