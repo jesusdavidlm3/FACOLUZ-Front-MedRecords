@@ -23,6 +23,7 @@ const DateContextProvider = ({children}) => {
     const [pregnacy, setPregnacy] = useState()
     const [pregnacyTime, setPregnacyTime] = useState()
     const [pregnacyControl, setPregnacyControl] = useState()
+    const [ailments, setAilments] = useState([])
 
     return(
         <dateContext.Provider value={{
