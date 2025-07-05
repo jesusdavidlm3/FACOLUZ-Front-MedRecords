@@ -12,7 +12,8 @@ const CurrentDate = () => {
             setAlergy,alergyDescription,setAlergyDescription,cancer,setCancer,cancerType,setCancerType,
             cancerTreatment,setCancerTreatment,cancerLocation,setCancerLocation,cancerDate,setCancerDate,
             menstruation,setMenstruation,pregnacy,setPregnacy,pregnacyTime,setPregnacyTime,
-            pregnacyControl,setPregnacyControl,ailments, setAilments
+            pregnacyControl,setPregnacyControl,ailments, setAilments,bloodType,setBloodType,
+            proneToBleeding,setProneToBleeding,height, setHeight, weight, setWeight
         } = useContext(dateContext)
 
     return(
@@ -26,6 +27,20 @@ const CurrentDate = () => {
                         </Form.Item>
                         <Form.Item label="Enfermedad actual (Inicio, evolucion, caracteristicas):" layout="vertical">
                             <Input.TextArea autoSize value={currentDisease} onChange={e=>setCurrentDisease(e.target.value)}/>
+                        </Form.Item>
+                        <Form.Item label="Tipo de sangre: ">
+                            <Select
+                                options={lists.bloodTypeList}
+                                value={bloodType}
+                                onChange={e=>setBloodType(e)}
+                            />
+                        </Form.Item>
+                        <Form.Item label="Es propenso al sangrado?: ">
+                            <Select 
+                                value={proneToBleeding}
+                                options={lists.listOfThree}
+                                onChange={e=>setProneToBleeding(e)}
+                            />
                         </Form.Item>
                     </Card>
                     <Card>
@@ -101,6 +116,7 @@ const CurrentDate = () => {
                                 options={lists.alimentsList}
                                 mode="multiple"
                                 onChange={e=>setAilments(e)}
+                                styles={{maxWidth: '30vw'}}
                             />
                         </Form.Item>
                         <Form.Item>
@@ -149,6 +165,24 @@ const CurrentDate = () => {
                         <Form.Item label="BPM: ">
                             <InputNumber controls={false}/>
                         </Form.Item>
+                        <Space.Compact>
+                            <Form.Item label="Peso:">
+                                <InputNumber
+                                    controls={false}
+                                    value={weight}
+                                    onChange={e=>setWeight(e)}
+                                    suffix={"Kg."}
+                                />
+                            </Form.Item>
+                            <Form.Item label="Altura:">
+                                <InputNumber
+                                    controls={false}
+                                    value={height}
+                                    onChange={e=>setHeight(e)}
+                                    suffix={"cm"}
+                                />
+                            </Form.Item>
+                        </Space.Compact>
                     </Card>
                     <Card title="Examen Fisico">
                         <Form.Item label="Cara:">

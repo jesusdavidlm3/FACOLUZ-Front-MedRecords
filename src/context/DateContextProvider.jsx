@@ -24,6 +24,10 @@ const DateContextProvider = ({children}) => {
     const [pregnacyTime, setPregnacyTime] = useState()
     const [pregnacyControl, setPregnacyControl] = useState()
     const [ailments, setAilments] = useState([])
+    const [bloodType, setBloodType] = useState()
+    const [proneToBleeding, setProneToBleeding] = useState()
+    const [height, setHeight] = useState()
+    const [weight, setWeight] = useState()
 
     return(
         <dateContext.Provider value={{
@@ -67,6 +71,16 @@ const DateContextProvider = ({children}) => {
             setPregnacyTime,
             pregnacyControl,
             setPregnacyControl,
+            ailments,
+            setAilments,
+            bloodType,
+            setBloodType,
+            proneToBleeding,
+            setProneToBleeding,
+            height,
+            setHeight,
+            weight,
+            setWeight
         }}>
             {children}
         </dateContext.Provider>
