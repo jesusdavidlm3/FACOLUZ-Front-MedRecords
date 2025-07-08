@@ -13,7 +13,13 @@ const CurrentDate = () => {
             cancerTreatment,setCancerTreatment,cancerLocation,setCancerLocation,cancerDate,setCancerDate,
             menstruation,setMenstruation,pregnacy,setPregnacy,pregnacyTime,setPregnacyTime,
             pregnacyControl,setPregnacyControl,ailments, setAilments,bloodType,setBloodType,
-            proneToBleeding,setProneToBleeding,height, setHeight, weight, setWeight
+            proneToBleeding,setProneToBleeding,height, setHeight, weight, setWeight,
+            complementaryTests,setComplementaryTests,cardioAffection,setCardiopAffection,hematoAffection,
+            setHematoAffection,renalAffection, setRenalAffection,neuroAffection, setNeuroAffection,
+            hepaticAffection,setHepaticAffection,sys,setSys,dia,setDia,bpm,setBpm,temp,setTemp,gangliosTest,
+            setGangliosTest,faceTest,setFaceTest,atmTest,setAtmTest,mascMusclesTest,setMascMusclesTest,lipsTest,
+            setLipsTest,mucouseTest,setMucouseTest,hardPalateTest,setHardPalateTest,softPalateTest,setSoftpalateTest,
+            toungueTest,setToungueTest,mouthFloorTest,setMouthFloorTest,spitGlandTest,setSpitGlandTest
         } = useContext(dateContext)
 
     return(
@@ -42,6 +48,13 @@ const CurrentDate = () => {
                                 onChange={e=>setProneToBleeding(e)}
                             />
                         </Form.Item>
+                        <Form.Item label="Estudios complementarios: ">
+                            <Input.TextArea
+                                value={complementaryTests}
+                                onChange={e=>setComplementaryTests(e.target.value)}
+                                autoSize
+                            />
+                        </Form.Item>
                     </Card>
                     <Card>
                         <Form.Item label="Esta bajo tratamiento medico:">
@@ -51,7 +64,11 @@ const CurrentDate = () => {
                             <Input.TextArea disabled={treatment != 1} autoSize value={treatmentDescription} onChange={e=>setTreatmentDescription(e.target.value)}/>
                         </Form.Item>
                         <Form.Item label="Fecha de su ultima consulta:">
-                            <DatePicker disabled={treatment != 1} />
+                            <DatePicker
+                                disabled={treatment != 1}
+                                value={lastDate}
+                                onChange={(a,b)=>setLastDate(a)}    
+                            />
                         </Form.Item>
                     </Card>
                     <Card>
@@ -63,11 +80,8 @@ const CurrentDate = () => {
                         </Form.Item>
                     </Card>
                     <Card>
-                        <Form.Item label="Ah presentado alguna reaccion a la anestesia">
-                            <Select options={lists.listOfThree}/>
-                        </Form.Item>
-                        <Form.Item label="Ah sido sometido a cirugia bajo anestesia general?:">
-                            <Select options={lists.listOfThree.slice(0,2)} value={anesthesia} onChange={e=>setAnesthesia(e)}/>
+                        <Form.Item label="Ah presentado reacciones a la anestesia?:">
+                            <Select options={lists.listOfThree} value={anesthesia} onChange={e=>setAnesthesia(e)}/>
                         </Form.Item>
                         <Form.Item label="Cual?:" layout="vertical"> 
                             <Input.TextArea disabled={anesthesia != 1} autoSize value={anesthesiaDescription} onChange={e=>setAnesthesiaDescription(e.target.value)}/>
@@ -84,16 +98,16 @@ const CurrentDate = () => {
                             <Select options={lists.listOfThree.slice(0,2)} value={cancer} onChange={e=>setCancer(e)}/>
                         </Form.Item>
                         <Form.Item label="Tipo: ">
-                            <Select disabled={cancer !=1}/>
+                            <Input disabled={cancer !=1} value={cancerType} onChange={e=>setCancerType(e.target.value)}/>
                         </Form.Item>
                         <Form.Item label="Tratamiento: ">
-                            <Select disabled={cancer !=1}/>
+                            <Input disabled={cancer !=1} value={cancerTreatment} onChange={e=>setCancerTreatment(e.target.value)}/>
                         </Form.Item>
                         <Form.Item label="Localizacion: ">
-                            <Select disabled={cancer !=1}/>
+                            <Input disabled={cancer !=1} value={cancerLocation} onChange={e=>setCancerLocation(e.target.value)}/>
                         </Form.Item>
                         <Form.Item label="Año de diagnostico:">
-                            <DatePicker mode="year" disabled={cancer !=1}/>
+                            <DatePicker mode="year" disabled={cancer !=1} value={cancerDate} onChange={(a,b)=>setCancerDate(a)}/>
                         </Form.Item>
                     </Card>
                     <Card>
@@ -104,7 +118,7 @@ const CurrentDate = () => {
                             <Select options={lists.listOfThree.slice(0,2)} value={pregnacy} onChange={e=>{setPregnacy(e); if(e==1){setMenstruation(1)}}}/>
                         </Form.Item>
                         <Form.Item label="Semanas: ">
-                            <Input disabled={pregnacy != 1}/>
+                            <InputNumber controls={false} disabled={pregnacy != 1} value={pregnacyTime} onChange={e=>setPregnacyTime(e.target.value)}/>
                         </Form.Item>
                         <Form.Item label="Controlado?: ">
                             <Select disabled={pregnacy != 1} options={lists.listOfThree.slice(0,2)} value={pregnacyControl} onChange={e=>setPregnacyControl(e)}/>
@@ -123,47 +137,66 @@ const CurrentDate = () => {
                             <Input
                                 disabled={!ailments.includes(1)}
                                 placeholder='Afeccion cardiovascular'
-                                onChange={(e) => setcardiovascularAffection(e)}
+                                value={cardioAffection}
+                                onChange={(e) => setCardiopAffection(e)}
                             />
                         </Form.Item>
                         <Form.Item>
                             <Input
                                 disabled={!ailments.includes(2)}
                                 placeholder='Afeccion hematologica'
-                                onChange={(e) => setHematologicalDisorders(e)}
+                                value={hematoAffection}
+                                onChange={(e) => setHematoAffection(e)}
                             />
                         </Form.Item>
                         <Form.Item>
                             <Input
                                 disabled={!ailments.includes(3)}
                                 placeholder='Afeccion renal'
-                                onChange={(e) => setKidneyDisease(e)}
+                                value={renalAffection}
+                                onChange={(e) => setRenalAffection(e)}
                             />
                         </Form.Item>
                         <Form.Item>
                             <Input
                                 disabled={!ailments.includes(4)}
                                 placeholder='Afeccion neurologica'
-                                onChange={(e) => setNeurologicalAffection(e)}
+                                value={neuroAffection}
+                                onChange={(e) => setNeuroAffection(e)}
                             />
                         </Form.Item>
                         <Form.Item>
                             <Input
-                                
                                 placeholder='Afeccion hepatica'
-                                onChange={(e) => setLiverConditions(e)}
+                                value={hepaticAffection}
+                                onChange={(e) => setHepaticAffection(e)}
                             />
                         </Form.Item>
                     </Card>
                     <Card>
                         <Form.Item label="Tension: ">
                             <Space.Compact>
-                                <InputNumber controls={false} prefix="Sys: "/>
-                                <InputNumber controls={false} prefix="Dia: "/>
+                                <InputNumber
+                                    controls={false}
+                                    prefix="Sys: "
+                                    value={sys}
+                                    onChange={e=>setSys(e.target.value)}
+                                />
+                                <InputNumber
+                                    controls={false}
+                                    prefix="Dia: "
+                                    value={dia}
+                                    onChange={e=>setDia(e.target.value)}
+                                />
                             </Space.Compact>
                         </Form.Item>
                         <Form.Item label="BPM: ">
-                            <InputNumber controls={false}/>
+                            <InputNumber
+                                controls={false}
+                                value={bpm}
+                                onChange={e=>setBpm(e)}
+                                suffix="BPM."
+                            />
                         </Form.Item>
                         <Space.Compact>
                             <Form.Item label="Peso:">
@@ -182,74 +215,146 @@ const CurrentDate = () => {
                                     suffix={"cm"}
                                 />
                             </Form.Item>
+                            <Form.Item label="Temperatura: ">
+                                <InputNumber
+                                    controls={false}
+                                    value={temp}
+                                    onChange={e=>setTemp(e.target.value)}
+                                />
+                            </Form.Item>
                         </Space.Compact>
                     </Card>
                     <Card title="Examen Fisico">
                         <Form.Item label="Cara:">
-                            <Input/>
+                            <Input value={faceTest} onChange={e=>setFaceTest(e.target.value)}/>
                         </Form.Item>
                         <Form.Item label="Ganglios:">
-                            <Input/>
+                            <Input value={gangliosTest} onChange={e=>setGangliosTest(e.target.value)}/>
                         </Form.Item>
                         <Form.Item label="ATM:">
-                            <Input/>
+                            <Input value={atmTest} onChange={e=>setAtmTest(e.target.value)}/>
                         </Form.Item>
                         <Form.Item label="Musculos masticatorios:">
-                            <Input/>
+                            <Input value={mascMusclesTest} onChange={e=>setMascMusclesTest(e.target.value)}/>
                         </Form.Item>
                     </Card>
                     <Card title="Examen Intraoral">
-                        <Form.Item label="Labios:">
-                            <Input/>
+                        <Space align="start">
+                            <Space direction="vertical">
+                                <Form.Item label="Labios:">
+                                    <Input
+                                        value={lipsTest}
+                                        onChange={e=>setLipsTest(e.target.value)}
+                                    />
+                                </Form.Item>
+                                <Form.Item label="Mucosa Oral: ">
+                                    <Input
+                                        value={mucouseTest}
+                                        onChange={e=>setMucouseTest(e.target.value)}
+                                    />
+                                </Form.Item>
+                                <Form.Item label="Paladar Duro: ">
+                                    <Input
+                                        value={hardPalateTest}
+                                        onChange={e=>setHardPalateTest(e.target.value)}
+                                    />
+                                </Form.Item>
+                                <Form.Item label="Paladar Blando:">
+                                    <Input
+                                        value={softPalateTest}
+                                        onChange={e=>setSoftpalateTest(e.target.value)}
+                                    />
+                                </Form.Item>
+                            </Space>
+                            <Space direction="vertical">
+                                <Form.Item label="Lengua:">
+                                    <Input
+                                        value={toungueTest}
+                                        onChange={e=>setToungueTest(e.target.value)}
+                                    />
+                                </Form.Item>
+                                <Form.Item label="Piso de boca:">
+                                    <Input
+                                        value={mouthFloorTest}
+                                        onChange={e=>setMouthFloorTest(e.target.value)}
+                                    />
+                                </Form.Item>
+                                <Form.Item label="Glandulas salivales:">
+                                    <Input
+                                        value={spitGlandTest}
+                                        onChange={e=>setSpitGlandTest(e.target.value)}
+                                    />
+                                </Form.Item>
+                            </Space>
+                        </Space>
+                    </Card>
+                    <Card title="Coloracion de encias">
+                        <Form.Item label="Color:">
+                            <Select options={lists.gumColor}/>
                         </Form.Item>
-                        <Form.Item label="Mucosa Oral: ">
-                            <Input/>
+                        <Form.Item label="Area:">
+                            <Select options={lists.gumEvaluationArea} />
                         </Form.Item>
-                        <Form.Item label="Paladar Duro: ">
-                            <Input/>
+                        <Form.Item label="Ubicacion">
+                            <Select options={lists.gumEvaluationLocation} />
                         </Form.Item>
-                        <Form.Item label="Paladar Blando:">
-                            <Input/>
-                        </Form.Item>
-                        <Form.Item label="Lengua:">
-                            <Input/>
-                        </Form.Item>
-                        <Form.Item label="Piso de boca:">
-                            <Input/>
-                        </Form.Item>
-                        <Form.Item label="Glandulas salivales:">
-                            <Input/>
+                        <Form.Item label="Mas acentuado en:">
+                            <Input />
                         </Form.Item>
                     </Card>
-                    <Card title="Evaluacion de encias">
-                        <Form.Item label="Color">
+                    <Card title="Tamano de las encias">
+                        <Form.Item label="Agrandamiento:">
+                            <Select options={lists.gumEnlargement}/>
+                        </Form.Item>
+                        <Form.Item label="Area:">
+                            <Select options={lists.gumEvaluationArea} />
+                        </Form.Item>
+                        <Form.Item label="Ubicacion">
+                            <Select options={lists.gumEvaluationLocation} />
+                        </Form.Item>
+                        <Form.Item label="Mas acentuado en:">
                             <Input />
                         </Form.Item>
-                        <Form.Item label="">
+                    </Card>
+                    <Card title="Consistencia de las encias">
+                        <Form.Item label="Consitencia:">
+                            <Select options={lists.gumConsistency}/>
+                        </Form.Item>
+                        <Form.Item label="Ubicacion">
+                            <Select options={lists.gumEvaluationLocation} />
+                        </Form.Item>
+                        <Form.Item label="Mas acentuado en:">
                             <Input />
                         </Form.Item>
-                        <Form.Item label="">
+                    </Card>
+                    <Card title="Posicion de las encias">
+                        <Form.Item label="posicion:">
+                            <Select options={lists.gumPosition}/>
+                        </Form.Item>
+                        <Form.Item label="Ubicacion">
+                            <Select options={lists.gumEvaluationLocation} />
+                        </Form.Item>
+                        <Form.Item label="Mas acentuado en:">
                             <Input />
                         </Form.Item>
-                        <Form.Item label="">
-                            <Input />
+                    </Card>
+                    <Card title="Forma de las encias">
+                        <Form.Item label="Forma:">
+                            <Select options={lists.gumForm}/>
                         </Form.Item>
-                        <Form.Item label="">
-                            <Input />
+                        <Form.Item label="Ubicacion">
+                            <Select options={lists.gumEvaluationLocation} />
                         </Form.Item>
-                        <Form.Item label="">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item label="">
-                            <Input />
-                        </Form.Item>
-                        <Form.Item label="">
+                        <Form.Item label="Mas acentuado en:">
                             <Input />
                         </Form.Item>
                     </Card>
                     <Card>
                         <Form.Item label="Pronostico:">
                             <Input.TextArea/>
+                        </Form.Item>
+                        <Form.Item label="Tratamiento: ">
+                            <Input.TextArea />
                         </Form.Item>
                         <Form.Item label="Se considera paciente de alto riesgo?">
                             <Select options={lists.listOfThree.slice(0,2)}/>

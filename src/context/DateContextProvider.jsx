@@ -28,6 +28,30 @@ const DateContextProvider = ({children}) => {
     const [proneToBleeding, setProneToBleeding] = useState()
     const [height, setHeight] = useState()
     const [weight, setWeight] = useState()
+    const [complementaryTests, setComplementaryTests] = useState()
+    const [cardioAffection, setCardiopAffection] = useState()
+    const [hematoAffection, setHematoAffection] = useState()
+    const [renalAffection, setRenalAffection] = useState()
+    const [neuroAffection, setNeuroAffection] = useState()
+    const [hepaticAffection, setHepaticAffection] = useState()
+    const [sys, setSys] = useState()
+    const [dia, setDia] = useState()
+    const [bpm, setBpm] = useState()
+    const [temp, setTemp] = useState()
+    const [gangliosTest, setGangliosTest] = useState()
+    const [faceTest, setFaceTest] = useState()
+    const [atmTest, setAtmTest] = useState()
+    const [mascMusclesTest, setMascMusclesTest] = useState()
+    const [lipsTest, setLipsTest] = useState()
+    const [mucouseTest, setMucouseTest] = useState()
+    const [hardPalateTest, setHardPalateTest] = useState()
+    const [softPalateTest, setSoftpalateTest] = useState()
+    const [toungueTest, setToungueTest] = useState()
+    const [mouthFloorTest, setMouthFloorTest] = useState()
+    const [spitGlandTest, setSpitGlandTest] = useState()
+
+    const [forecast, setForecast] = useState()
+    
 
     return(
         <dateContext.Provider value={{
@@ -80,7 +104,49 @@ const DateContextProvider = ({children}) => {
             height,
             setHeight,
             weight,
-            setWeight
+            setWeight,
+            complementaryTests,
+            setComplementaryTests,
+            cardioAffection,
+            setCardiopAffection,
+            hematoAffection,
+            setHematoAffection,
+            renalAffection,
+            setRenalAffection,
+            neuroAffection,
+            setNeuroAffection,
+            hepaticAffection,
+            setHepaticAffection,
+            sys,
+            setSys,
+            dia,
+            setDia,
+            bpm,
+            setBpm,
+            temp,
+            setTemp,
+            gangliosTest,
+            setGangliosTest,
+            faceTest,
+            setFaceTest,
+            atmTest,
+            setAtmTest,
+            mascMusclesTest,
+            setMascMusclesTest,
+            lipsTest,
+            setLipsTest,
+            mucouseTest,
+            setMucouseTest,
+            hardPalateTest,
+            setHardPalateTest,
+            softPalateTest,
+            setSoftpalateTest,
+            toungueTest,
+            setToungueTest,
+            mouthFloorTest,
+            setMouthFloorTest,
+            spitGlandTest,
+            setSpitGlandTest
         }}>
             {children}
         </dateContext.Provider>
