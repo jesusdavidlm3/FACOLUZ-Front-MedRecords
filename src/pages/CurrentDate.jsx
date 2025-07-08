@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Input, Form, Space, Button, Select, Divider, DatePicker, Card, InputNumber } from "antd"
 import * as lists from "../context/lists"
 import { dateContext } from "../context/dateContext";
+import { ConfirmSaveDateModal } from "../components/Modals";
 
 const CurrentDate = () => {
 
@@ -21,6 +22,12 @@ const CurrentDate = () => {
             setLipsTest,mucouseTest,setMucouseTest,hardPalateTest,setHardPalateTest,softPalateTest,setSoftpalateTest,
             toungueTest,setToungueTest,mouthFloorTest,setMouthFloorTest,spitGlandTest,setSpitGlandTest
         } = useContext(dateContext)
+
+    const [confirmModal, setConfirmModal] = useState(false)
+
+    const sendData = async() => {
+        console.log("enviando")
+    }
 
     return(
         <div className="CurrentDate">
@@ -55,22 +62,7 @@ const CurrentDate = () => {
                                 autoSize
                             />
                         </Form.Item>
-                    </Card>
-                    <Card>
-                        <Form.Item label="Esta bajo tratamiento medico:">
-                            <Select options={lists.listOfThree.slice(0,2)} onChange={e=>setTreatment(e)} value={treatment}/>
-                        </Form.Item>
-                        <Form.Item label='Cual y en que dosis y frecuencia?:' layout="vertical"> 
-                            <Input.TextArea disabled={treatment != 1} autoSize value={treatmentDescription} onChange={e=>setTreatmentDescription(e.target.value)}/>
-                        </Form.Item>
-                        <Form.Item label="Fecha de su ultima consulta:">
-                            <DatePicker
-                                disabled={treatment != 1}
-                                value={lastDate}
-                                onChange={(a,b)=>setLastDate(a)}    
-                            />
-                        </Form.Item>
-                    </Card>
+                    </Card>     
                     <Card>
                         <Form.Item label="Esta bajo tratamiento con bifosfonatos?:">
                             <Select options={lists.listOfThree.slice(0,2)} value={bifosfonato} onChange={e=>setBifosfonato(e)}/>
@@ -356,12 +348,22 @@ const CurrentDate = () => {
                         <Form.Item label="Tratamiento: ">
                             <Input.TextArea />
                         </Form.Item>
-                        <Form.Item label="Se considera paciente de alto riesgo?">
-                            <Select options={lists.listOfThree.slice(0,2)}/>
-                        </Form.Item>
                     </Card>
-                </div>            
+                </div>         
+                <Button
+                    htmlType="submit"
+                    onClick={setConfirmModal(true)}
+                    variant="solid"
+                    color="primary"
+                >
+                    Guardar
+                </Button>
             </Form>
+            <ConfirmSaveDateModal 
+                onClose={()=>setConfirmModal(false)}
+                open={confirmModal}
+                onOk={()=>sendData}
+            />
         </div>
     )
 }

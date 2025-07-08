@@ -6,42 +6,52 @@ const DateContextProvider = ({children}) => {
     const [consultationReason, setConsultationReason] = useState()
     const [currentDisease, setCurrentDisease] = useState()
     const [treatment, setTreatment] = useState()
-    const [treatmentDescription, setTreatmentDescription] = useState()
-    const [lastDate, setLastDate] = useState()
     const [bifosfonato, setBifosfonato] = useState()
     const [bifosfonatoDescription, setBifosfonatoDescription] = useState()
     const [anesthesia, setAnesthesia] = useState()
     const [anesthesiaDescription, setAnesthesiaDescription] = useState()
     const [alergy, setAlergy] = useState()
     const [alergyDescription, setAlergyDescription] = useState()
+    
+    //Cancer
     const [cancer, setCancer] = useState()
     const [cancerType, setCancerType] = useState()
     const [cancerTreatment, setCancerTreatment] = useState()
     const [cancerLocation, setCancerLocation] = useState()
     const [cancerDate, setCancerDate] = useState()
+
+    //pregnacy
     const [menstruation, setMenstruation] = useState()
     const [pregnacy, setPregnacy] = useState()
     const [pregnacyTime, setPregnacyTime] = useState()
     const [pregnacyControl, setPregnacyControl] = useState()
+
+    //ailments
     const [ailments, setAilments] = useState([])
-    const [bloodType, setBloodType] = useState()
-    const [proneToBleeding, setProneToBleeding] = useState()
-    const [height, setHeight] = useState()
-    const [weight, setWeight] = useState()
-    const [complementaryTests, setComplementaryTests] = useState()
     const [cardioAffection, setCardiopAffection] = useState()
     const [hematoAffection, setHematoAffection] = useState()
     const [renalAffection, setRenalAffection] = useState()
     const [neuroAffection, setNeuroAffection] = useState()
     const [hepaticAffection, setHepaticAffection] = useState()
+
+    const [bloodType, setBloodType] = useState()
+    const [proneToBleeding, setProneToBleeding] = useState()
+    const [height, setHeight] = useState()
+    const [weight, setWeight] = useState()
+    const [complementaryTests, setComplementaryTests] = useState()
+   
     const [sys, setSys] = useState()
     const [dia, setDia] = useState()
     const [bpm, setBpm] = useState()
     const [temp, setTemp] = useState()
+
+    //physicalExamination
     const [gangliosTest, setGangliosTest] = useState()
     const [faceTest, setFaceTest] = useState()
     const [atmTest, setAtmTest] = useState()
     const [mascMusclesTest, setMascMusclesTest] = useState()
+    
+    //intraoralExamination
     const [lipsTest, setLipsTest] = useState()
     const [mucouseTest, setMucouseTest] = useState()
     const [hardPalateTest, setHardPalateTest] = useState()
@@ -49,6 +59,9 @@ const DateContextProvider = ({children}) => {
     const [toungueTest, setToungueTest] = useState()
     const [mouthFloorTest, setMouthFloorTest] = useState()
     const [spitGlandTest, setSpitGlandTest] = useState()
+
+    //gumEvaluation
+    const [gumColor, setGumColor] = useState()
 
     const [forecast, setForecast] = useState()
     
@@ -61,10 +74,6 @@ const DateContextProvider = ({children}) => {
             setCurrentDisease,
             treatment,
             setTreatment,
-            treatmentDescription,
-            setTreatmentDescription,
-            lastDate,
-            setLastDate,
             bifosfonato,
             setBifosfonato,
             bifosfonatoDescription,
