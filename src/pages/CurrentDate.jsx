@@ -3,12 +3,13 @@ import { Input, Form, Space, Button, Select, Divider, DatePicker, Card, InputNum
 import * as lists from "../context/lists"
 import { dateContext } from "../context/dateContext";
 import { ConfirmSaveDateModal } from "../components/Modals";
+import { appContext } from "../context/appContext";
+import { getAge } from "../functions/getAge";
 
 const CurrentDate = () => {
 
     const {  consultationReason,setConsultationReason,currentDisease,setCurrentDisease,treatment,
-            setTreatment,treatmentDescription,setTreatmentDescription,lastDate,setLastDate,
-            bifosfonato,setBifosfonato,bifosfonatoDescription,setBifosfonatoDescription,
+            setTreatment,bifosfonato,setBifosfonato,bifosfonatoDescription,setBifosfonatoDescription,
             anesthesia,setAnesthesia,anesthesiaDescription,setAnesthesiaDescription,alergy,
             setAlergy,alergyDescription,setAlergyDescription,cancer,setCancer,cancerType,setCancerType,
             cancerTreatment,setCancerTreatment,cancerLocation,setCancerLocation,cancerDate,setCancerDate,
@@ -20,12 +21,100 @@ const CurrentDate = () => {
             hepaticAffection,setHepaticAffection,sys,setSys,dia,setDia,bpm,setBpm,temp,setTemp,gangliosTest,
             setGangliosTest,faceTest,setFaceTest,atmTest,setAtmTest,mascMusclesTest,setMascMusclesTest,lipsTest,
             setLipsTest,mucouseTest,setMucouseTest,hardPalateTest,setHardPalateTest,softPalateTest,setSoftpalateTest,
-            toungueTest,setToungueTest,mouthFloorTest,setMouthFloorTest,spitGlandTest,setSpitGlandTest
+            toungueTest,setToungueTest,mouthFloorTest,setMouthFloorTest,spitGlandTest,setSpitGlandTest,forecast,
+            setForecast,gumColor,setGumColor,gumColorArea,setGumColorArea,gumColorLocation,setGumColorLocation,
+            gumColorAccentuated,setGumColorAccentuated,gumEnlargement,setGumEnlargement,gumEnlargementArea,
+            setGumEnlargementArea,gumEnlargementLocation,setGumEnlargementLocation,gumEnlargementAccentuated,
+            setGumEnlargementAccentuated,gumConsistency,setGumConsistency,gumConsistencyLocation,
+            setGumConsistencyLocation,gumConsistencyAccentuated,setGumConsistencyAccentuated,gumPosition,setGumPosition,
+            gumPositionLocation,setGumPositionLocation,gumPositionAccestuated,setGumPositionAccentuated,gumForm,
+            setGumForm,gumFormLocation,setGumFormLocation,gumFormAccentuated,setGumFormAccentuate, observations,
+            setObservations
         } = useContext(dateContext)
+
+    const { historyData, currentDate } = useContext(appContext)
 
     const [confirmModal, setConfirmModal] = useState(false)
 
     const sendData = async() => {
+        const data = {
+            dateId: currentDate,
+            consultationReason: consultationReason,
+            currentDisease: currentDisease,
+            treatment: treatment,
+            bifosfonato: bifosfonato,
+            bifosfonadoDescription: bifosfonatoDescription,
+            reactionToAnesthesia: anesthesia,
+            reactionToAnesthesiaDesc: anesthesia == 1 ? anesthesiaDescription : null,
+            alergy: alergy,
+            alergyDescription: alergy == 1 ? alergyDescription : null,
+            cancer: {
+                cancer: cancer,
+                type: cancerType,
+                treatment: cancerTreatment,
+                location: cancerLocation,
+                diagnoseyear: cancerDate
+            },
+            pregnacy: historyData.sex == "M" ? null : {
+                menstruation: menstruation,
+                pregnacy: pregnacy,
+                pregnacyTime: pregnacyTime,
+                pregnacyControl: pregnacyControl
+            },
+            ailments: {
+                ailments: ailments,
+                cardio: ailments.includes(1) ? cardioAffection : null,
+                hematological: ailments.includes(2) ? hematoAffection : null,
+                renal: ailments.includes(3) ? renalAffection : null,
+                neuro: ailments.includes(4) ? neuroAffection : null,
+                hepatic: ailments.includes(5) ? hepaticAffection : null
+            },
+            bloodType: historyData.firstDate ? bloodType : null,
+            proneToBleeding: proneToBleeding,
+            height: getAge(historyData.birthDate) > 18 ? null : height,
+            weight: getAge(historyData.birthDate) > 18 ? null : weight,
+            complementaryTest: complementaryTests,
+            sys: sys,
+            dia: dia,
+            bpm: bpm,
+            temp: temp,
+            physicalExamination: {
+                face: faceTest,
+                ganglios: gangliosTest,
+                atm: atmTest,
+                mascMuscles: mascMusclesTest
+            },
+            intraoralExamination: {
+                lips: lipsTest,
+                mucouse: mucouseTest,
+                toungue: toungueTest,
+                mouthFloor: mouthFloorTest,
+
+            },
+            gumEvaluation: {
+                gumColor: gumColor,
+                gumColorArea: gumColorArea,
+                gumColorLocation: gumColorLocation,
+                gumColorAccentuated: gumColorAccentuated,
+                gumEnlargement: gumEnlargement,
+                gumEnlargementArea: gumEnlargementArea,
+                gumEnlargementLocation: gumEnlargementLocation,
+                gumEnlargementAccentuated: gumEnlargementAccentuated,
+                gumConsistency: gumConsistency,
+                gumConsistencyLocation: gumConsistencyLocation,
+                gumConsistencyAccentuated: gumConsistencyAccentuated,
+                gumPosition: gumPosition,
+                gumPositionLocation: gumPositionLocation,
+                gumPositionAccentuated: gumPositionAccestuated,
+                gumForm: gumForm,
+                gumFormLocation: gumFormLocation,
+                gumFormAccentuated: gumFormAccentuated
+            },
+            dentalDiagram: jsonmodels.dentalDiagram | null,
+            childrenDentalDiagram: jsonmodels.childrenDentalDiagram | null,
+            forecast: forecast,
+            observations: observations,
+        }
         console.log("enviando")
     }
 
@@ -46,6 +135,7 @@ const CurrentDate = () => {
                                 options={lists.bloodTypeList}
                                 value={bloodType}
                                 onChange={e=>setBloodType(e)}
+                                disabled={!historyData.firstDate}
                             />
                         </Form.Item>
                         <Form.Item label="Es propenso al sangrado?: ">
@@ -104,16 +194,16 @@ const CurrentDate = () => {
                     </Card>
                     <Card>
                         <Form.Item label="Periodo Menstrual: ">
-                            <Select options={lists.menstruationCicle} disabled={pregnacy == 1} value={menstruation} onChange={e=>setMenstruation(e)}/> {/*Desactivar tambien si el paciente es hombre*/}
+                            <Select options={lists.menstruationCicle} disabled={pregnacy == 1 || historyData.sex == 'M'} value={menstruation} onChange={e=>setMenstruation(e)}/> {/*Desactivar tambien si el paciente es hombre*/}
                         </Form.Item>
                         <Form.Item label="Esta en periodo de gestacion?: ">
-                            <Select options={lists.listOfThree.slice(0,2)} value={pregnacy} onChange={e=>{setPregnacy(e); if(e==1){setMenstruation(1)}}}/>
+                            <Select options={lists.listOfThree.slice(0,2)} disabled={historyData.sex == 'M'} value={pregnacy} onChange={e=>{setPregnacy(e); if(e==1){setMenstruation(1)}}}/>
                         </Form.Item>
                         <Form.Item label="Semanas: ">
-                            <InputNumber controls={false} disabled={pregnacy != 1} value={pregnacyTime} onChange={e=>setPregnacyTime(e.target.value)}/>
+                            <InputNumber controls={false} disabled={pregnacy != 1 || historyData.sex == 'M'} value={pregnacyTime} onChange={e=>setPregnacyTime(e.target.value)}/>
                         </Form.Item>
                         <Form.Item label="Controlado?: ">
-                            <Select disabled={pregnacy != 1} options={lists.listOfThree.slice(0,2)} value={pregnacyControl} onChange={e=>setPregnacyControl(e)}/>
+                            <Select disabled={pregnacy != 1 || historyData.sex == 'M'} options={lists.listOfThree.slice(0,2)} value={pregnacyControl} onChange={e=>setPregnacyControl(e)}/>
                         </Form.Item>
                     </Card>
                     <Card>
@@ -159,6 +249,7 @@ const CurrentDate = () => {
                         </Form.Item>
                         <Form.Item>
                             <Input
+                                disabled={!ailments.includes(5)}
                                 placeholder='Afeccion hepatica'
                                 value={hepaticAffection}
                                 onChange={(e) => setHepaticAffection(e)}
@@ -193,6 +284,7 @@ const CurrentDate = () => {
                         <Space.Compact>
                             <Form.Item label="Peso:">
                                 <InputNumber
+                                    disabled={getAge(historyData.birthDate) >= 18}
                                     controls={false}
                                     value={weight}
                                     onChange={e=>setWeight(e)}
@@ -201,6 +293,7 @@ const CurrentDate = () => {
                             </Form.Item>
                             <Form.Item label="Altura:">
                                 <InputNumber
+                                    disabled={getAge(historyData.birthDate) >= 18}
                                     controls={false}
                                     value={height}
                                     onChange={e=>setHeight(e)}
@@ -282,77 +375,152 @@ const CurrentDate = () => {
                     </Card>
                     <Card title="Coloracion de encias">
                         <Form.Item label="Color:">
-                            <Select options={lists.gumColor}/>
+                            <Select
+                                options={lists.gumColor}
+                                value={gumColor}
+                                onChange={e=>setGumColor(e)}
+                            />
                         </Form.Item>
                         <Form.Item label="Area:">
-                            <Select options={lists.gumEvaluationArea} />
+                            <Select
+                                options={lists.gumEvaluationArea}
+                                value={gumColorArea}
+                                onChange={e=>setGumColorArea(e)}
+                            />
                         </Form.Item>
                         <Form.Item label="Ubicacion">
-                            <Select options={lists.gumEvaluationLocation} />
+                            <Select
+                                options={lists.gumEvaluationLocation}
+                                value={gumColorLocation}
+                                onChange={e=>setGumColorLocation(e)}
+                            />
                         </Form.Item>
                         <Form.Item label="Mas acentuado en:">
-                            <Input />
+                            <Input
+                                value={gumColorAccentuated}
+                                onChange={e=>setGumColorAccentuated(e.target.value)}
+                            />
                         </Form.Item>
                     </Card>
                     <Card title="Tamano de las encias">
                         <Form.Item label="Agrandamiento:">
-                            <Select options={lists.gumEnlargement}/>
+                            <Select
+                                options={lists.gumEnlargement}
+                                value={gumEnlargement}
+                                onChange={e=>setGumEnlargement(e)}    
+                            />
                         </Form.Item>
                         <Form.Item label="Area:">
-                            <Select options={lists.gumEvaluationArea} />
+                            <Select
+                                options={lists.gumEvaluationArea}
+                                value={gumEnlargementArea}
+                                onChange={e=>setGumEnlargementArea(e)}
+                            />
                         </Form.Item>
                         <Form.Item label="Ubicacion">
-                            <Select options={lists.gumEvaluationLocation} />
+                            <Select
+                                options={lists.gumEvaluationLocation}
+                                value={gumEnlargementLocation}
+                                onChange={e=>setGumEnlargementLocation(e)}
+                            />
                         </Form.Item>
                         <Form.Item label="Mas acentuado en:">
-                            <Input />
+                            <Input
+                                value={gumEnlargementAccentuated}
+                                onChange={e=>{setGumEnlargementAccentuated(e.target.value)}}
+                            />
                         </Form.Item>
                     </Card>
                     <Card title="Consistencia de las encias">
                         <Form.Item label="Consitencia:">
-                            <Select options={lists.gumConsistency}/>
+                            <Select
+                                options={lists.gumConsistency}
+                                value={gumConsistency}
+                                onChange={e=>setGumConsistency(e)}
+                            />
                         </Form.Item>
                         <Form.Item label="Ubicacion">
-                            <Select options={lists.gumEvaluationLocation} />
+                            <Select
+                                options={lists.gumEvaluationLocation}
+                                value={gumConsistencyLocation}
+                                onChange={e=>setGumConsistencyLocation(e)}
+                            />
                         </Form.Item>
                         <Form.Item label="Mas acentuado en:">
-                            <Input />
+                            <Input
+                                value={gumConsistencyAccentuated}
+                                onChange={e=>setGumConsistencyAccentuated(e.target.value)}
+                            />
                         </Form.Item>
                     </Card>
                     <Card title="Posicion de las encias">
                         <Form.Item label="posicion:">
-                            <Select options={lists.gumPosition}/>
+                            <Select
+                                options={lists.gumPosition}
+                                value={gumPosition}
+                                onChange={e=>setGumPosition(e)}
+                            />
                         </Form.Item>
                         <Form.Item label="Ubicacion">
-                            <Select options={lists.gumEvaluationLocation} />
+                            <Select
+                                options={lists.gumEvaluationLocation}
+                                value={gumPositionLocation}
+                                onChange={e=>gumPositionLocation(e)}
+                            />
                         </Form.Item>
                         <Form.Item label="Mas acentuado en:">
-                            <Input />
+                            <Input
+                                value={gumPositionAccestuated}
+                                onChange={e=>setGumPositionAccentuated(e.target.value)}
+                            />
                         </Form.Item>
                     </Card>
                     <Card title="Forma de las encias">
                         <Form.Item label="Forma:">
-                            <Select options={lists.gumForm}/>
+                            <Select
+                                options={lists.gumForm}
+                                value={gumForm}
+                                onChange={e=>setGumForm(e)}
+                            />
                         </Form.Item>
                         <Form.Item label="Ubicacion">
-                            <Select options={lists.gumEvaluationLocation} />
+                            <Select
+                                options={lists.gumEvaluationLocation}
+                                value={gumFormLocation}
+                                onChange={e=>setGumFormLocation(e)}
+                            />
                         </Form.Item>
                         <Form.Item label="Mas acentuado en:">
-                            <Input />
+                            <Input
+                                value={gumFormAccentuated}
+                                onChange={e=>setGumFormAccentuate(e.target.value)}
+                            />
                         </Form.Item>
                     </Card>
                     <Card>
+                        <Form.Item label="Observaciones">
+                            <Input.TextArea
+                                value={observations}
+                                onChange={e=>setObservations(e.target.value)}
+                            />
+                        </Form.Item>
                         <Form.Item label="Pronostico:">
-                            <Input.TextArea/>
+                            <Input.TextArea
+                                value={forecast}
+                                onChange={e=>setForecast(e.target.value)}
+                            />
                         </Form.Item>
                         <Form.Item label="Tratamiento: ">
-                            <Input.TextArea />
+                            <Input.TextArea 
+                                value={treatment}
+                                onChange={e=>setTreatment(e.target.value)}
+                            />
                         </Form.Item>
                     </Card>
                 </div>         
                 <Button
                     htmlType="submit"
-                    onClick={setConfirmModal(true)}
+                    onClick={()=>setConfirmModal(true)}
                     variant="solid"
                     color="primary"
                 >
@@ -362,7 +530,7 @@ const CurrentDate = () => {
             <ConfirmSaveDateModal 
                 onClose={()=>setConfirmModal(false)}
                 open={confirmModal}
-                onOk={()=>sendData}
+                onOk={()=>sendData()}
             />
         </div>
     )

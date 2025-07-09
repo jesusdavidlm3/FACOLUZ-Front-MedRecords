@@ -12,6 +12,8 @@ const DateContextProvider = ({children}) => {
     const [anesthesiaDescription, setAnesthesiaDescription] = useState()
     const [alergy, setAlergy] = useState()
     const [alergyDescription, setAlergyDescription] = useState()
+    const [forecast, setForecast] = useState()
+    const [observations, setObservations] = useState()
     
     //Cancer
     const [cancer, setCancer] = useState()
@@ -39,7 +41,7 @@ const DateContextProvider = ({children}) => {
     const [height, setHeight] = useState()
     const [weight, setWeight] = useState()
     const [complementaryTests, setComplementaryTests] = useState()
-   
+    
     const [sys, setSys] = useState()
     const [dia, setDia] = useState()
     const [bpm, setBpm] = useState()
@@ -60,11 +62,32 @@ const DateContextProvider = ({children}) => {
     const [mouthFloorTest, setMouthFloorTest] = useState()
     const [spitGlandTest, setSpitGlandTest] = useState()
 
-    //gumEvaluation
+    //gumEvaluation Color
     const [gumColor, setGumColor] = useState()
+    const [gumColorArea, setGumColorArea] = useState()
+    const [gumColorLocation, setGumColorLocation] = useState()
+    const [gumColorAccentuated, setGumColorAccentuated] = useState()
 
-    const [forecast, setForecast] = useState()
+    //gumEvaluation Size
+    const [gumEnlargement, setGumEnlargement] = useState()
+    const [gumEnlargementArea, setGumEnlargementArea] = useState()
+    const [gumEnlargementLocation, setGumEnlargementLocation] = useState()
+    const [gumEnlargementAccentuated, setGumEnlargementAccentuated] = useState()
+
+    //gumEvaluation Consistency
+    const [gumConsistency, setGumConsistency] = useState()
+    const [gumConsistencyLocation, setGumConsistencyLocation] = useState()
+    const [gumConsistencyAccentuated, setGumConsistencyAccentuated] = useState()
     
+    //gumEvaluation Position
+    const [gumPosition, setGumPosition] = useState()
+    const [gumPositionLocation, setGumPositionLocation] = useState()
+    const [gumPositionAccestuated, setGumPositionAccentuated] = useState()
+
+    //gumEvaluation Form
+    const [gumForm, setGumForm] = useState()
+    const [gumFormLocation, setGumFormLocation] = useState()
+    const [gumFormAccentuated, setGumFormAccentuated] = useState()
 
     return(
         <dateContext.Provider value={{
@@ -155,7 +178,45 @@ const DateContextProvider = ({children}) => {
             mouthFloorTest,
             setMouthFloorTest,
             spitGlandTest,
-            setSpitGlandTest
+            setSpitGlandTest,
+            forecast,
+            setForecast,
+            gumColor,
+            setGumColor,
+            gumColorArea,
+            setGumColorArea,
+            gumColorLocation,
+            setGumColorLocation,
+            gumColorAccentuated,
+            setGumColorAccentuated,
+            gumEnlargement,
+            setGumEnlargement,
+            gumEnlargementArea,
+            setGumEnlargementArea,
+            gumEnlargementLocation,
+            setGumEnlargementLocation,
+            gumEnlargementAccentuated,
+            setGumEnlargementAccentuated,
+            gumConsistency,
+            setGumConsistency,
+            gumConsistencyLocation,
+            setGumConsistencyLocation,
+            gumConsistencyAccentuated,
+            setGumConsistencyAccentuated,
+            gumPosition,
+            setGumPosition,
+            gumPositionLocation,
+            setGumPositionLocation,
+            gumPositionAccestuated,
+            setGumPositionAccentuated,
+            gumForm,
+            setGumForm,
+            gumFormLocation,
+            setGumFormLocation,
+            gumFormAccentuated,
+            setGumFormAccentuated,
+            observations,
+            setObservations
         }}>
             {children}
         </dateContext.Provider>
