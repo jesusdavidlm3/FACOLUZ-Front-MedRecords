@@ -19,7 +19,7 @@ export async function getDatesList() {
 }
 
 export async function getHistory(patientId) {
-	const res = await http.get(`api/getHistory/`, token, patientId)
+	const res = await http.get(`api/getHistory`, token, patientId)
 	if(res.status == 200){
 		return res
 	}

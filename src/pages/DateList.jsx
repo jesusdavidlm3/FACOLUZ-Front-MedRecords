@@ -4,6 +4,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import { getDatesList, getHistory } from '../client/client'
 import { appContext } from '../context/appContext'
 import { routerContext } from '../context/routerContext'
+import { getDate, getTime } from '../functions/formatDateTime'
+import * as lists from '../context/lists'
 
 const DateList = () => {
 
@@ -51,12 +53,13 @@ const DateList = () => {
                 <h1>Ya esta atendiendo a un paciente en este momento.</h1>
                 <h3>por favor termine la cita actual para atender otra.</h3>
             </>):(showList.length > 0 ? (
-                <List bordered>
+                <List bordered style={{width: '80%'}}>
                 {showList.map(item => (
-                    <List.Item style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 15px'}}>
-                        <h3>{item.date} - {item.time} - {item.idType}-{item.cedula} {item.patientName} {item.patientLastname} - Dr. {item.doctorName} {item.doctorLastname} </h3>
+                    <List.Item style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '15px 15px'}}>
+                        <h3>{getDate(item.date)} - {getTime(item.date)} - {item.name} {item.lastname} - {item.idType}-{item.identification!=null ? item.identification : item.code}</h3>
                         <Tooltip title='Atender' >
                             <Button
+                                color='primary'
                                 shape='circle'
                                 icon={<AuditOutlined />}
                                 size='large'
