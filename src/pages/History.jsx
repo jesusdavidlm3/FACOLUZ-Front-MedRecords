@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Divider } from 'antd'
+import { Divider, List, Space } from 'antd'
 import { appContext } from "../context/appContext";
 import { getAge } from '../functions/getAge'
 import { getDate } from '../functions/formatDateTime'
@@ -12,76 +12,105 @@ const History = () => {
         <div className="History">
             <Divider><h1>Historia Medica</h1></Divider>
             { attending ? (<>
-                { historyData.firstDate && <><h4>Es la primera cita de este paciente</h4><h4>Debe registrar algunos campos</h4></> }
-                <h3>Nombre: { historyData.name } { historyData.lastname }</h3>
-                { historyData.patientIdentificacion == null ? (
-                    <h3>Codigo: {historyData.patientCode}</h3>
-                ):(
-                    <h3>Cedula: {historyData.patientIdentificacion}</h3>
-                ) }
-                <h3>{`Fecha de nacimiento: ${getDate(historyData.birthDate)} (${getAge(historyData.birthDate)} años)`}</h3>
-                <h3>Sexo: { historyData.sex }</h3>
-                <h3>Raza: { historyData.race }</h3>
-                { historyData.ethnicity != null && <h3>Etnia: {historyData.ethnicity}</h3> }
-                <h3>Lugar de nacimiento: { historyData.birthPlace }</h3>
-                <h3>Direccion: { historyData.address }</h3>
+                <Space direction="horizontal" style={{display: 'flex', gap: '10vw'}}>
+                    <Space direction="vertical">
+                        <h4>Nombre: <span>{ historyData.name } { historyData.lastname }</span></h4>
 
-                { getAge(historyData.birthDate) < 18 ? (<>    {/*Se muestra si el paciente es menor a 18 años*/}
-                    <h3>Estudia: {historyData.currentStudying}</h3>
-                    <h3>Nombre del representante: {historyData.representativeName}</h3>
-                    <h3>Cedula del representante: {historyData.representativeIdentification}</h3>
-                    <h3>Telefono del representante: {historyData.representativePhone}</h3>
-                    <h3>Tipo de vivienda: {historyData.homeOwnership}</h3>
-                    <h3>Carga familiar del representante: {historyData.representativeFamilyBurden}</h3>
-                    <h3>El representante trabaja actualmente: {historydata.representativeWorking}</h3>
-                    { historyData.representativeWorking == null ? (
-                        <h3>Trabaja: No</h3>
-                    ):(<>
-                        <h3>Trabaja: Si</h3>
-                        <h3>Ocupacion: {historyData.representativeWorkType}</h3>
-                        <h3>Carga Familiar: {historyData.representativeFamilyburden}</h3>
-                        <h3>Tipo de vivienda: {historyData.homeOwnership}</h3>
-                    </>) }
-                </>):(<>                                        {/*Se muestra si el paciente es Mayor a 18 años*/}
-                    { historyData.currentWorking == null ? (
-                        <h3>trabaja: No</h3>
-                    ):(<>
-                        <h3>Trabaja: Si</h3>
-                        <h3>Ocupacion: {historyData.workType}</h3>
-                        <h3>Carga Familiar: {historyData.familyBurden}</h3>
-                        <h3>Tipo de vivienda: {historyData.homeOwnership}</h3>
-                    </>) }
-                </>) }
+                        { historyData.patientIdentificacion == null ? (
+                            <h4>Codigo: <span>{historyData.patientCode}</span></h4>
+                        ):(
+                            <h4>Cedula: <span>{historyData.patientIdentificacion}</span></h4>
+                        ) }
 
-                <h3>{historyData.addressState} {historyData.addressMunicipality} {historyData.addressCity}</h3>
+                        <h4>Fecha de nacimiento: <span>{getDate(historyData.birthDate)} ({getAge(historyData.birthDate)} años)</span></h4>
+                        <h4>Sexo: <span>{ historyData.sex }</span></h4>
+                        <h4>Raza: <span>{ historyData.race }</span></h4>
+                        { historyData.ethnicity != null && <h4>Etnia: <span>{historyData.ethnicity}</span></h4> }
+                        <h4>Lugar de nacimiento: <span>{ historyData.birthPlace }</span></h4>
+                        <h4>Direccion: <span>{ historyData.address }</span></h4>
+                        <h4><span>{historyData.addressState} {historyData.addressMunicipality} {historyData.addressCity}</span></h4>
+                        { !historyData.firstDate && (<h4>Tipo de sangre: <span>{historyData.bloodType}</span></h4>)}
+                        
+                        
+                    </Space>
 
-                { historyData.firstDate ? (
-                    <h3>Tipo de sangre: Es la primera cita de este paciente</h3>
-                ):(
-                    <h3>Tipo de sangre: {historyData.bloodType}</h3>
-                ) }
+                    <Space direction="vertical">
+                        { !historyData.firstDate && (<>
+                            {historyData.ailments.length > 0 ? (
+                                <h4>Padecimientos: <span>{historyData.ailments.map(item => `${item}, `)}</span></h4>
+                            ):(
+                                <h4>Padecimientos: <span>Ninguno</span></h4>
+                            ) }
 
-                { historyData.firstDate ? (<>
-                    <h3>Padecimientos: Es la primera cita de este paciente</h3>
-                </>):(
-                    historyData.ailments.length > 0 ? (
-                        <h3>Padecimientos: {historyData.ailments.map(item => `${item}, `)}</h3>
-                    ):(
-                        <h3>Padecimientos: Ninguno</h3>
-                    ) 
-                ) }
+                            {historyData.ailments.cardio != null && <h4>
+                                Afeccion Cardiologica: <span>{historyData.ailments.cardio}</span>
+                            </h4>}
 
-                <Divider>Contacto de emergencia</Divider>
-                <h3>Nombre: {historyData.emergencyName}</h3>
-                <h3>Telefono: {historyData.emergencyPhone}</h3>
-                <h3>Relacion: {historyData.emergencyRelationship}</h3>
+                            {historyData.ailments.hematological != null && <h4>
+                                Afeccion Hematologica: <span>{historyData.ailments.hematological}</span>
+                            </h4>}
 
+                            {historyData.ailments.renal != null && <h4>
+                                Afeccion Renal: <span>{historyData.ailments.renal}</span>
+                            </h4>}
+
+                            {historyData.ailments.neuro != null && <h4>
+                                Afeccion Neurologica: <span>{historyData.ailments.neuro}</span>
+                            </h4>}
+
+                            {historyData.ailments.hepatic != null && <h4>
+                                Afeccion Hepatica: <span>{historyData.ailments.hepatic}</span>
+                            </h4>}
+
+                            <h4>Propenso al sangrado: {historyData.proneToBleeding}</h4>
+
+                        </>)}
+                    </Space>
+
+                    <Space direction="vertical">
+                        { getAge(historyData.birthDate) < 18 ? (<>    {/*Se muestra si el paciente es menor a 18 años*/}
+                            <h4>Estudia: <span>{historyData.currentStudying}</span></h4>
+                            <h4>Nombre del representante: <span>{historyData.representativeName}</span></h4>
+                            <h4>Cedula del representante: <span>{historyData.representativeIdentification}</span></h4>
+                            <h4>Telefono del representante: <span>{historyData.representativePhone}</span></h4>
+                            <h4>Tipo de vivienda: <span>{historyData.homeOwnership}</span></h4>
+                            <h4>Carga familiar del representante: <span>{historyData.representativeFamilyBurden}</span></h4>
+                            <h4>El representante trabaja actualmente: <span>{historyData.representativeWorking}</span></h4>
+                            { historyData.representativeWorking == null ? (
+                                <h4>Trabaja: <span>No</span></h4>
+                            ):(<>
+                                <h4>Trabaja: <span>Si</span></h4>
+                                <h4>Ocupacion: <span>{historyData.representativeWorkType}</span></h4>
+                                <h4>Carga Familiar: <span>{historyData.representativeFamilyburden}</span></h4>
+                                <h4>Tipo de vivienda: <span>{historyData.homeOwnership}</span></h4>
+                            </>) }
+                        </>):(<>                                        {/*Se muestra si el paciente es Mayor a 18 años*/}
+                            { historyData.currentWorking == null ? (
+                                <h4>trabaja: <span>No</span></h4>
+                            ):(<>
+                                <h4>Trabaja: <span>Si</span></h4>
+                                <h4>Ocupacion: <span>{historyData.workType}</span></h4>
+                                <h4>Carga Familiar: <span>{historyData.familyBurden}</span></h4>
+                                <h4>Tipo de vivienda: <span>{historyData.homeOwnership}</span></h4>
+                            </>) }
+                        </>) }
+                    </Space>
+                </Space>
+
+                <Divider><h1>Contactos</h1></Divider>
+                <h4>En caso de emergencias: <span>{historyData.emergencyName} ({historyData.emergencyRelationship}): {historyData.emergencyPhone}</span></h4>
                 { historyData.companionPhone != null && (<>
-                    <Divider>Acompañante habitual</Divider>
-                    <h3>Nombre: {historyData.companionName}</h3>
-                    <h3>Telefono: {historyData.companionPhone}</h3>
-                    <h3>Relacion: {historyData.companionRelationship}</h3>
+                    <h4>Acompañante habitual: <span>{historyData.companionName} ({historyData.companionRelationship}): {historyData.companionPhone}</span></h4>
                 </>)}
+
+                { !historyData.firstDate && <>
+                    <Divider><h1>Registro de consultas</h1></Divider>
+                    <List bordered>
+                        { historyData.consultationsList.map(item => (<List.Item key={item.id}>
+                            {getDate(item.dateTime)}
+                        </List.Item>)) }
+                    </List>
+                </> }
                 
             </>):(<>
                 <h1>No esta atendiendo a nadie en este momento.</h1>

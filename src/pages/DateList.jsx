@@ -48,7 +48,7 @@ const DateList = () => {
     return(
         <div className='DateList'>
             {contextHolder}
-            <Divider>Listado de citas</Divider>
+            <Divider><h1>Listado de citas</h1></Divider>
             { attending ? (<>
                 <h1>Ya esta atendiendo a un paciente en este momento.</h1>
                 <h3>por favor termine la cita actual para atender otra.</h3>

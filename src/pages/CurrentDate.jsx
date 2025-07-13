@@ -120,7 +120,7 @@ const CurrentDate = () => {
 
     return(
         <div className="CurrentDate">
-            <Divider>Consulta</Divider>
+            <Divider><h1>Consulta</h1></Divider>
             { attending ? (
                 <Form layout="vertical" variant="outlined" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                     <div className='cardsContainer'>
