@@ -37,7 +37,7 @@ const History = () => {
                     <Space direction="vertical">
                         { !historyData.firstDate && (<>
                             {historyData.ailments.length > 0 ? (
-                                <h4>Padecimientos: <span>{historyData.ailments.map(item => `${item}, `)}</span></h4>
+                                <h4>Padecimientos: <span>{historyData.ailments.ailments.map(item => `${item}, `)}</span></h4>
                             ):(
                                 <h4>Padecimientos: <span>Ninguno</span></h4>
                             ) }

@@ -34,12 +34,13 @@ const CurrentDate = () => {
         } = useContext(dateContext)
 
     const { historyData, currentDate, attending } = useContext(appContext)
-
+    const { messageApi,setAttending, setCurrentDate, contextHolder } = useContext(appContext)
     const [confirmModal, setConfirmModal] = useState(false)
 
     const sendData = async() => {
         const data = {
             dateId: currentDate,
+            patientId: historyData.id,
             consultationReason: consultationReason,
             currentDisease: currentDisease,
             treatment: treatment,
@@ -122,11 +123,15 @@ const CurrentDate = () => {
                 type: 'success',
                 content: 'Historia del paciente se ha registrado correctamente'
             })
+            setAttending(false)
+            setView("DatesList")
+            setCurrentDate(null)
         }
     }
 
     return(
         <div className="CurrentDate">
+            {contextHolder}
             <Divider><h1>Consulta</h1></Divider>
             { attending ? (
                 <Form layout="vertical" variant="outlined" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
@@ -271,13 +276,13 @@ const CurrentDate = () => {
                                         controls={false}
                                         prefix="Sys: "
                                         value={sys}
-                                        onChange={e=>setSys(e.target.value)}
+                                        onChange={e=>setSys(e)}
                                     />
                                     <InputNumber
                                         controls={false}
                                         prefix="Dia: "
                                         value={dia}
-                                        onChange={e=>setDia(e.target.value)}
+                                        onChange={e=>setDia(e)}
                                     />
                                 </Space.Compact>
                             </Form.Item>
@@ -312,7 +317,7 @@ const CurrentDate = () => {
                                     <InputNumber
                                         controls={false}
                                         value={temp}
-                                        onChange={e=>setTemp(e.target.value)}
+                                        onChange={e=>setTemp(e)}
                                     />
                                 </Form.Item>
                             </Space.Compact>
