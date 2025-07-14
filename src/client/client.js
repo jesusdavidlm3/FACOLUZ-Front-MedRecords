@@ -24,3 +24,10 @@ export async function getHistory(patientId) {
 		return res
 	}
 }
+
+export async function setDateData(data) {
+	const res = await http.post(`api/setDateData`, token, data)
+	if(res.status == 200){
+		return res
+	}
+}

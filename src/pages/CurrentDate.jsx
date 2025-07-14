@@ -5,6 +5,7 @@ import { dateContext } from "../context/dateContext";
 import { ConfirmSaveDateModal } from "../components/Modals";
 import { appContext } from "../context/appContext";
 import { getAge } from "../functions/getAge";
+import { setDateData } from "../client/client";
 
 const CurrentDate = () => {
 
@@ -48,8 +49,7 @@ const CurrentDate = () => {
             reactionToAnesthesiaDesc: anesthesia == 1 ? anesthesiaDescription : null,
             alergy: alergy,
             alergyDescription: alergy == 1 ? alergyDescription : null,
-            cancer: {
-                cancer: cancer,
+            cancer: cancer != 1 ? null : {
                 type: cancerType,
                 treatment: cancerTreatment,
                 location: cancerLocation,
@@ -95,27 +95,34 @@ const CurrentDate = () => {
                 gumColor: gumColor,
                 gumColorArea: gumColorArea,
                 gumColorLocation: gumColorLocation,
-                gumColorAccentuated: gumColorAccentuated,
+                gumColorAccentuated: gumColorAccentuated || null,
                 gumEnlargement: gumEnlargement,
                 gumEnlargementArea: gumEnlargementArea,
                 gumEnlargementLocation: gumEnlargementLocation,
-                gumEnlargementAccentuated: gumEnlargementAccentuated,
+                gumEnlargementAccentuated: gumEnlargementAccentuated || null,
                 gumConsistency: gumConsistency,
                 gumConsistencyLocation: gumConsistencyLocation,
-                gumConsistencyAccentuated: gumConsistencyAccentuated,
+                gumConsistencyAccentuated: gumConsistencyAccentuated || null,
                 gumPosition: gumPosition,
                 gumPositionLocation: gumPositionLocation,
-                gumPositionAccentuated: gumPositionAccestuated,
+                gumPositionAccentuated: gumPositionAccestuated || null,
                 gumForm: gumForm,
                 gumFormLocation: gumFormLocation,
-                gumFormAccentuated: gumFormAccentuated
+                gumFormAccentuated: gumFormAccentuated || null
             },
-            dentalDiagram: jsonmodels.dentalDiagram | null,
-            childrenDentalDiagram: jsonmodels.childrenDentalDiagram | null,
+            dentalDiagram: null,
+            childrenDentalDiagram:  null,
             forecast: forecast,
             observations: observations,
         }
-        console.log("enviando")
+        console.log(data)
+        const historyRes = await setDateData(data)
+        if(historyRes.status == 200){
+            messageApi.open({
+                type: 'success',
+                content: 'Historia del paciente se ha registrado correctamente'
+            })
+        }
     }
 
     return(
@@ -190,7 +197,7 @@ const CurrentDate = () => {
                                 <Input disabled={cancer !=1} value={cancerLocation} onChange={e=>setCancerLocation(e.target.value)}/>
                             </Form.Item>
                             <Form.Item label="Año de diagnostico:">
-                                <DatePicker mode="year" disabled={cancer !=1} value={cancerDate} onChange={(a,b)=>setCancerDate(a)}/>
+                                <DatePicker mode="year" format="YYYY" picker="year" disabled={cancer !=1} value={cancerDate} onChange={(a,b)=>setCancerDate(a)}/>
                             </Form.Item>
                         </Card>
                         <Card>
@@ -221,7 +228,7 @@ const CurrentDate = () => {
                                     disabled={!ailments.includes(1)}
                                     placeholder='Afeccion cardiovascular'
                                     value={cardioAffection}
-                                    onChange={(e) => setCardiopAffection(e)}
+                                    onChange={(e) => setCardiopAffection(e.target.value)}
                                 />
                             </Form.Item>
                             <Form.Item>
@@ -229,7 +236,7 @@ const CurrentDate = () => {
                                     disabled={!ailments.includes(2)}
                                     placeholder='Afeccion hematologica'
                                     value={hematoAffection}
-                                    onChange={(e) => setHematoAffection(e)}
+                                    onChange={(e) => setHematoAffection(e.target.value)}
                                 />
                             </Form.Item>
                             <Form.Item>
@@ -237,7 +244,7 @@ const CurrentDate = () => {
                                     disabled={!ailments.includes(3)}
                                     placeholder='Afeccion renal'
                                     value={renalAffection}
-                                    onChange={(e) => setRenalAffection(e)}
+                                    onChange={(e) => setRenalAffection(e.target.value)}
                                 />
                             </Form.Item>
                             <Form.Item>
@@ -245,7 +252,7 @@ const CurrentDate = () => {
                                     disabled={!ailments.includes(4)}
                                     placeholder='Afeccion neurologica'
                                     value={neuroAffection}
-                                    onChange={(e) => setNeuroAffection(e)}
+                                    onChange={(e) => setNeuroAffection(e.target.value)}
                                 />
                             </Form.Item>
                             <Form.Item>
@@ -253,7 +260,7 @@ const CurrentDate = () => {
                                     disabled={!ailments.includes(5)}
                                     placeholder='Afeccion hepatica'
                                     value={hepaticAffection}
-                                    onChange={(e) => setHepaticAffection(e)}
+                                    onChange={(e) => setHepaticAffection(e.target.value)}
                                 />
                             </Form.Item>
                         </Card>
@@ -398,6 +405,7 @@ const CurrentDate = () => {
                             </Form.Item>
                             <Form.Item label="Mas acentuado en:">
                                 <Input
+                                    disabled={gumColorLocation != 2}
                                     value={gumColorAccentuated}
                                     onChange={e=>setGumColorAccentuated(e.target.value)}
                                 />
@@ -427,6 +435,7 @@ const CurrentDate = () => {
                             </Form.Item>
                             <Form.Item label="Mas acentuado en:">
                                 <Input
+                                disabled={gumEnlargementLocation != 2}
                                     value={gumEnlargementAccentuated}
                                     onChange={e=>{setGumEnlargementAccentuated(e.target.value)}}
                                 />
@@ -449,6 +458,7 @@ const CurrentDate = () => {
                             </Form.Item>
                             <Form.Item label="Mas acentuado en:">
                                 <Input
+                                    disabled={gumConsistencyLocation != 2}
                                     value={gumConsistencyAccentuated}
                                     onChange={e=>setGumConsistencyAccentuated(e.target.value)}
                                 />
@@ -466,11 +476,12 @@ const CurrentDate = () => {
                                 <Select
                                     options={lists.gumEvaluationLocation}
                                     value={gumPositionLocation}
-                                    onChange={e=>gumPositionLocation(e)}
+                                    onChange={e=>setGumPositionLocation(e)}
                                 />
                             </Form.Item>
                             <Form.Item label="Mas acentuado en:">
                                 <Input
+                                    disabled={gumPositionLocation != 2}
                                     value={gumPositionAccestuated}
                                     onChange={e=>setGumPositionAccentuated(e.target.value)}
                                 />
@@ -493,6 +504,7 @@ const CurrentDate = () => {
                             </Form.Item>
                             <Form.Item label="Mas acentuado en:">
                                 <Input
+                                    disabled={gumFormLocation != 2}
                                     value={gumFormAccentuated}
                                     onChange={e=>setGumFormAccentuate(e.target.value)}
                                 />
