@@ -45,31 +45,31 @@ const CurrentDate = () => {
             currentDisease: currentDisease,
             treatment: treatment,
             bifosfonato: bifosfonato,
-            bifosfonadoDescription: bifosfonatoDescription,
+            bifosfonatoDescription: bifosfonato == 1 ? bifosfonatoDescription : null,
             reactionToAnesthesia: anesthesia,
             reactionToAnesthesiaDesc: anesthesia == 1 ? anesthesiaDescription : null,
             alergy: alergy,
             alergyDescription: alergy == 1 ? alergyDescription : null,
-            cancer: cancer != 1 ? null : {
+            cancer: cancer != 1 ? null : JSON.stringify({
                 type: cancerType,
                 treatment: cancerTreatment,
                 location: cancerLocation,
-                diagnoseyear: cancerDate
-            },
-            pregnacy: historyData.sex == "M" ? null : {
+                diagnoseyear: cancerDate.$y
+            }),
+            pregnacy: historyData.sex == "M" ? null : JSON.stringify({
                 menstruation: menstruation,
                 pregnacy: pregnacy,
                 pregnacyTime: pregnacyTime,
                 pregnacyControl: pregnacyControl
-            },
-            ailments: {
+            }),
+            ailments: JSON.stringify({
                 ailments: ailments,
                 cardio: ailments.includes(1) ? cardioAffection : null,
                 hematological: ailments.includes(2) ? hematoAffection : null,
                 renal: ailments.includes(3) ? renalAffection : null,
                 neuro: ailments.includes(4) ? neuroAffection : null,
                 hepatic: ailments.includes(5) ? hepaticAffection : null
-            },
+            }),
             bloodType: historyData.firstDate ? bloodType : null,
             proneToBleeding: proneToBleeding,
             height: getAge(historyData.birthDate) > 18 ? null : height,
@@ -79,20 +79,19 @@ const CurrentDate = () => {
             dia: dia,
             bpm: bpm,
             temp: temp,
-            physicalExamination: {
+            physicalExamination: JSON.stringify({
                 face: faceTest,
                 ganglios: gangliosTest,
                 atm: atmTest,
                 mascMuscles: mascMusclesTest
-            },
-            intraoralExamination: {
+            }),
+            intraoralExamination: JSON.stringify({
                 lips: lipsTest,
                 mucouse: mucouseTest,
                 toungue: toungueTest,
                 mouthFloor: mouthFloorTest,
-
-            },
-            gumEvaluation: {
+            }),
+            gumEvaluation: JSON.stringify({
                 gumColor: gumColor,
                 gumColorArea: gumColorArea,
                 gumColorLocation: gumColorLocation,
@@ -110,7 +109,7 @@ const CurrentDate = () => {
                 gumForm: gumForm,
                 gumFormLocation: gumFormLocation,
                 gumFormAccentuated: gumFormAccentuated || null
-            },
+            }),
             dentalDiagram: null,
             childrenDentalDiagram:  null,
             forecast: forecast,

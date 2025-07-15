@@ -3,6 +3,7 @@ import { Divider, List, Space } from 'antd'
 import { appContext } from "../context/appContext";
 import { getAge } from '../functions/getAge'
 import { getDate } from '../functions/formatDateTime'
+import { searchOnList, ailmentsList } from "../context/lists";
 
 const History = () => {
 
@@ -36,8 +37,8 @@ const History = () => {
 
                     <Space direction="vertical">
                         { !historyData.firstDate && (<>
-                            {historyData.ailments.length > 0 ? (
-                                <h4>Padecimientos: <span>{historyData.ailments.ailments.map(item => `${item}, `)}</span></h4>
+                            {JSON.parse(historyData.ailments).ailments.length > 0 ? (
+                                <h4>Padecimientos: <span>{JSON.parse(historyData.ailments).ailments.map(item => `${searchOnList(ailmentsList, item)}, `)}</span></h4>
                             ):(
                                 <h4>Padecimientos: <span>Ninguno</span></h4>
                             ) }
