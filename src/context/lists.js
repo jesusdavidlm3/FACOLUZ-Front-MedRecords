@@ -45,7 +45,7 @@ export const raceList = [
     {label: 'Indigena', value: 4},
 ]
 
-export const alimentsList = [
+export const ailmentsList = [
     {label: 'Adenopatias', value: 0},
     {label: 'Afeccion cardiovascular', value: 1},
     {label: 'Afecciones hematologicas', value: 2},

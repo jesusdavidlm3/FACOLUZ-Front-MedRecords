@@ -5,6 +5,8 @@ import { encrypt } from '../functions/hash'
 import { login } from '../client/client'
 import { routerContext } from '../context/routerContext'
 import React from 'react'
+import logofaco from '../assets/Logo_FacoLuz.png'
+import logoluz from '../assets/Logo_LUZ.png'
 
 const Login = () => {
 
@@ -40,7 +42,12 @@ const Login = () => {
 	return(
 		<div className='Login'>
 			<Form disabled={loading} className='loginForm' onFinish={submitLogin}>
-				<h1>Control de historias</h1>
+				<div className='logos'>
+					<img src={logoluz} className='logoluz'/>
+					<img src={logofaco} className='logofaco'/>
+				</div>
+				<h1>Modulo de historias clinicas</h1>
+				<h2>iniciar sesion</h2>
 				<Form.Item name='identification'>
 					<Input placeholder='Identificacion'/>
 				</Form.Item>

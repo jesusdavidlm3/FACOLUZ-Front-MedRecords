@@ -53,7 +53,7 @@ const DateList = () => {
                 <h1>Ya esta atendiendo a un paciente en este momento.</h1>
                 <h3>por favor termine la cita actual para atender otra.</h3>
             </>):(showList.length > 0 ? (
-                <List bordered style={{width: '80%'}}>
+                <List bordered style={{width: '80%'}} className='mainList'>
                 {showList.map(item => (
                     <List.Item style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '15px 15px'}}>
                         <h3>{getDate(item.date)} - {getTime(item.date)} - {item.name} {item.lastname} - {item.idType}-{item.identification!=null ? item.identification : item.code}</h3>
