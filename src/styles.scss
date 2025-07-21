@@ -38,6 +38,29 @@
 	justify-content: space-between;
 }
 
+.mainList{
+	background-color: white;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+
+	.listItem{
+		// background-color: var(--listItemColor);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		align-self: center;
+		// width: 90%;
+		// border-radius: var(--moduleRadius);
+		// padding: 10px 20px;
+
+		.buttons{
+			display: flex;
+			gap: 10px;
+		}
+	}
+}
+
 body{
 	margin: 0px;
 	background-color: var(--bgColor);
@@ -251,29 +274,6 @@ body{
 	flex-direction: column;
 	align-items: center;
 	h3,h1{margin: 0;}
-
-	.mainList{
-		background-color: white;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-
-		.listItem{
-			// background-color: var(--listItemColor);
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			align-self: center;
-			// width: 90%;
-			// border-radius: var(--moduleRadius);
-			// padding: 10px 20px;
-
-			.buttons{
-				display: flex;
-				gap: 10px;
-			}
-		}
-	}
 }
 
 .CurrentDate{

@@ -4,7 +4,6 @@ import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
 import DateList from "../pages/DateList";
-import FinishHistory from "../pages/FinishHistory"
 import History from "../pages/History"
 import CurrentDate from '../pages/CurrentDate'
 
@@ -18,7 +17,6 @@ const Router = () => {
             case "Login": return <Login/>
             case "DateList": return <DateList/>
             case "CurrentDate": return <CurrentDate/>
-            case "FinishHistory": return <FinishHistory/>
             case "History": return <History/>
             default: return <ErrorPage/>
         }

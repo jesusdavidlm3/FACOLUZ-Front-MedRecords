@@ -106,9 +106,9 @@ const History = () => {
 
                 { !historyData.firstDate && <>
                     <Divider><h1>Registro de consultas</h1></Divider>
-                    <List bordered>
-                        { historyData.consultationsList.map(item => (<List.Item key={item.id}>
-                            {getDate(item.dateTime)}
+                    <List bordered className="mainList" style={{width: '75%'}} size="small">
+                        { historyData.consultationsList.map(item => (<List.Item key={item.id} className="listItem">
+                            <h2>Consulta fecha: {getDate(item.dateTime)}</h2>
                         </List.Item>)) }
                     </List>
                 </> }
