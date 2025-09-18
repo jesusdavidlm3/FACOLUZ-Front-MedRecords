@@ -1,6 +1,6 @@
 {
-  "name": "Historias Clinicas FACOLUZ",
-  "productName": "Historias Clinicas FACOLUZ",
+  "name": "Historias-Clinicas-FACOLUZ",
+  "productName": "Historias-Clinicas-FACOLUZ",
   "version": "1.0.0",
   "description": "Modulo de historias del sistema de gestion de clinicas FACOLUZ",
   "main": ".vite/build/main.js",
@@ -31,6 +31,11 @@
     "name": "Jesus David Lozano",
     "email": "jesusdavidlozanomarin@gmail.com"
   },
+  "contributors": [
+    {
+      "name": "Samuel David Chourio",
+      "email": "chourio.samuel.24@gmail.com"
+    }],
   "license": "MIT",
   "dependencies": {
     "antd": "^5.22.4",
