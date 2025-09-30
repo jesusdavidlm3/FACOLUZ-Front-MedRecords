@@ -1,6 +1,6 @@
 {
-  "name": "Historias-Clinicas-FACOLUZ",
-  "productName": "Historias-Clinicas-FACOLUZ",
+  "name": "historias",
+  "productName": "historias",
   "version": "1.0.0",
   "description": "Modulo de historias del sistema de gestion de clinicas FACOLUZ",
   "main": ".vite/build/main.js",
