@@ -27,6 +27,7 @@ export class httpMethods {
 				let res = await axios.post(`${url}/${apiAddress}`, data, {headers: {'Authorization': `Bearer ${token}`}})
 				return res
 			}else if(token == null){
+				console.log(url)
 				let res = await axios.post(`${url}/${apiAddress}`, data)
 				return res
 			}

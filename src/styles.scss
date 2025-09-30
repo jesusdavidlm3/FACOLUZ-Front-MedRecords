@@ -292,6 +292,14 @@ body{
 	}
 }
 
+.AdultOdontogram{
+	@include pageBasis;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	h3,h1{margin: 0;}
+}
+
 .FinishHistory{
 	@include pageBasis;
 }

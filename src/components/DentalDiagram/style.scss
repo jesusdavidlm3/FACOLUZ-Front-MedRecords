@@ -12,13 +12,42 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        width: 90%;
+        height: 60%;
 
         .visual_tooth_container{
-            flex-basis: 6.25%;
-            margin: 3px;
-            box-sizing: border-box;
+            
+            div{
 
-            .dental_diagram_checkbox{display: none;}
+                border: 3px solid black;
+            }
+            border: none;
+            width: 60px;
+            height: 60px;
+            display: grid;
+            grid-template-columns: 30px 30px;
+            grid-template-rows: 30px 30px;
+            grid-column: 2;
+            grid-row: 2;
+            
+            rotate: 45deg;
+            margin: 2px 8px;
+            
+
+            .dental_diagram_checkbox{
+                background-color: white;
+                border: none;
+                width: 20%;
+                height: 20%;
+                display: grid;
+                grid-template-columns: 100px 100px;
+                grid-template-rows: 100px 100px;
+                grid-column: 2;
+                grid-row: 2;
+                
+                rotate: 45deg;
+                margin: 30px 30px;
+            }
 
             .true{
                 background-color: lightskyblue;
@@ -29,23 +58,26 @@
             }
 
             .visual_checkbox_dental_diagram_0{
-
+                border-top-left-radius: 100%;
             }
 
             .visual_checkbox_dental_diagram_1{
-
+                border-top-right-radius: 100%;
             }
 
             .visual_checkbox_dental_diagram_2{
-
+                border-bottom-left-radius: 100%;
             }
             
             .visual_checkbox_dental_diagram_3{
-
+                border-bottom-right-radius: 100%;
             }
 
             .visual_checkbox_dental_diagram_4{
-
+                position: relative;
+                top: -38px;
+                right: -13px;
+                display: inline;
             }
         }
     }

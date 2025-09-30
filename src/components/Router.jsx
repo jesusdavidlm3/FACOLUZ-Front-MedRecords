@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import DateList from "../pages/DateList";
 import History from "../pages/History"
 import CurrentDate from '../pages/CurrentDate'
+import AdultOdontogram from '../pages/AdultOdontogram'
 
 const Router = () => {
 
@@ -18,6 +19,7 @@ const Router = () => {
             case "DateList": return <DateList/>
             case "CurrentDate": return <CurrentDate/>
             case "History": return <History/>
+            case "Odontogram": return <AdultOdontogram/>
             default: return <ErrorPage/>
         }
     } catch (err) {

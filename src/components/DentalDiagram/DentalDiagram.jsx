@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button } from 'antd'
 import './style.scss'
 
-const DentalDiagram = ({children, saveData}) => {
-
+const DentalDiagram = ({saveData}) => {
+    const children = false; //cambiar a true si es odontograma infantil
     const adultPieces = [
         18, 17, 16, 15, 14, 13, 12, 11,
         21, 22, 23, 24, 25, 26, 27, 28,
@@ -43,18 +43,17 @@ const DentalDiagram = ({children, saveData}) => {
         saveData(data)
     }
 
+    //{children ? (<h1>Dientes permanentes</h1>):(<h1>Odontograma</h1>)}
+    let divActive = 'true'; //puede ser necesario cambiarlo por un useState si no renderiza cambios
     return(
         <div className='dental_diagram'>
             <div className='diagram_container'>
-                {children ? (<h1>Dientes permanentes</h1>):(<h1>Odontograma</h1>)}
-                {adultPieces.map(tooth => (
+                {adultPieces.map((tooth, i) => (
                     <div className='visual_tooth_container'>
-                        {[...Array(5)].map(i => {
+                        {[...Array(5)].map((_, j) => {
                             const isChecked = document.getElementById(`tooth_${tooth}_area_${i}`)
-                            let divActive = 'false'; //puede ser necesario cambiarlo por un useState si no renderiza cambios
                             return(<>
-                            <input type='checkbox' className='dental_diagram_checkbox' id={`tooth_${tooth}_area_${i}`}/>
-                            <div className={`visual_checkbox_dental_diagram_${i} ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />
+                            <div className={`visual_checkbox_dental_diagram_${j} ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />
                             </>)
                             // return(<>
                             //     <input type='checkbox' className='dental_diagram_checkbox' id={`tooth_${tooth}_area_${i}`}/>

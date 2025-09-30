@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Input, Form, Space, Button, Select, Divider, DatePicker, Card, InputNumber } from "antd"
 import * as lists from "../context/lists"
 import { dateContext } from "../context/dateContext";
+import { routerContext } from '../context/routerContext'
 import { ConfirmSaveDateModal } from "../components/Modals";
 import { appContext } from "../context/appContext";
 import { getAge } from "../functions/getAge";
@@ -36,6 +37,7 @@ const CurrentDate = () => {
     const { historyData, currentDate, attending } = useContext(appContext)
     const { messageApi,setAttending, setCurrentDate, contextHolder } = useContext(appContext)
     const [confirmModal, setConfirmModal] = useState(false)
+    const {view, setView} = useContext(routerContext)
 
     const sendData = async() => {
         const data = {
@@ -534,15 +536,25 @@ const CurrentDate = () => {
                                 />
                             </Form.Item>
                         </Card>
-                    </div>         
-                    <Button
-                        htmlType="submit"
-                        onClick={()=>setConfirmModal(true)}
-                        variant="solid"
-                        color="primary"
-                    >
-                        Guardar
-                    </Button>
+                    </div> 
+                    <Space>
+                        <Button
+                            htmlType="submit"
+                            onClick={()=>setView("Odontogram")}
+                            variant="solid"
+                            color="primary"
+                        >
+                            Odontograma
+                        </Button>
+                        <Button
+                            htmlType="submit"
+                            onClick={()=>setConfirmModal(true)}
+                            variant="solid"
+                            color="primary"
+                        >
+                            Guardar
+                        </Button>
+                    </Space>
                 </Form>
             ):(<>
                 <h1>No esta atendiendo a nadie en este momento.</h1>
