@@ -1,7 +1,16 @@
 import axios from 'axios'
 
-const ip = import.meta.env.VITE_BACK_ADDRESS
-const url = `${ip}:3002`
+// const ip = import.meta.env.VITE_BACK_ADDRESS
+
+	let ip
+	let url
+
+async function init(){
+	ip = await window.env.getBackendAddress();
+	url = `${ip}:3002`
+}
+
+init()
 
 export class httpMethods {
 	constructor(){
