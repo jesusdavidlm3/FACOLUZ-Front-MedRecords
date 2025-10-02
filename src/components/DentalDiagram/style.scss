@@ -18,7 +18,7 @@
         .visual_tooth_container{
             
             div{
-
+                
                 border: 3px solid black;
             }
             border: none;
@@ -75,9 +75,28 @@
 
             .visual_checkbox_dental_diagram_4{
                 position: relative;
-                top: -38px;
-                right: -13px;
+                width: 25px;
+                height: 25px;
+                border-radius: 50% 50%;
+                bottom: 45px;
+                left: 14px;
                 display: inline;
+                ::picker{
+                    background-color: rgb(141, 23, 112);
+                }
+            }
+            :hover{
+                background-color: rgb(0, 47, 255);
+            }
+
+            .options-list {
+                display: none;
+                width: 90%;
+                transition: all 0.3s ease-in-out;
+
+                &.expanded {
+                    display: block;
+                }
             }
         }
     }

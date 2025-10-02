@@ -1,5 +1,7 @@
-import React, { useContext } from 'react'
-import { Button } from 'antd'
+import React, { useContext, useState } from 'react'
+import { Button, Card, Form, Select } from 'antd'
+import { appContext } from '../../context/appContext'
+import * as lists from "../../context/lists"
 import './style.scss'
 
 const DentalDiagram = ({saveData}) => {
@@ -17,6 +19,12 @@ const DentalDiagram = ({saveData}) => {
         71, 72, 73, 74, 75,
         85, 84, 83, 82, 81
     ]
+
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
+    };
     
     const setResult = () => {
         let adultData = []
@@ -53,19 +61,30 @@ const DentalDiagram = ({saveData}) => {
                         {[...Array(5)].map((_, j) => {
                             const isChecked = document.getElementById(`tooth_${tooth}_area_${i}`)
                             return(<>
-                            <div className={`visual_checkbox_dental_diagram_${j} ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />
+                            <div className={`visual_checkbox_dental_diagram_${j} ${divActive}`} onClick={toggleExpand} />
                             </>)
-                            // return(<>
-                            //     <input type='checkbox' className='dental_diagram_checkbox' id={`tooth_${tooth}_area_${i}`}/>
-                            //     {i + 1 == 1 && <div className={`visual_checkbox_dental_diagram_0 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                            //     {i + 1 == 2 && <div className={`visual_checkbox_dental_diagram_1 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                            //     {i + 1 == 3 && <div className={`visual_checkbox_dental_diagram_2 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                            //     {i + 1 == 4 && <div className={`visual_checkbox_dental_diagram_3 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                            //     {i + 1 == 5 && <div className={`visual_checkbox_dental_diagram_4 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                            // </>)
                         })}
                     </div>
                 ))}
+            </div>
+            
+            <div className="options-container" >
+                {isExpanded && (
+                <Card className={`options-list ${isExpanded ? 'expanded' : ''}`}>
+                    <Form.Item label="Pieza dental: ">
+                        <label> {`Pieza 12`} </label>
+                    </Form.Item>
+                    <Form.Item label="Movilidad: ">
+                        <Select/>
+                    </Form.Item>
+                    <Form.Item label="Radiografia: ">
+                        <Select/>
+                    </Form.Item>
+                    <Form.Item label="Interpretacion:" layout="horizontal"> 
+                        <Input.TextArea />
+                    </Form.Item>
+                </Card>
+                )}
             </div>
 
             {children && <>
