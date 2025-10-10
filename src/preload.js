@@ -5,6 +5,6 @@ import { contextBridge, ipcRenderer } from 'electron'
 
 contextBridge.exposeInMainWorld('env', {
     getBackendAddress: async () => {
-        return await ipcRenderer.invoke('getBackendAddress')
+        return await ipcRenderer.invoke('get_Backend_Address')
     }
 })

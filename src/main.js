@@ -30,7 +30,7 @@ const createWindow = () => {
   // mainWindow.webContents.openDevTools();
 };
 
-ipcMain.handle('getBackendAddress', () => {
+ipcMain.handle('get_Backend_Address', () => {
   return process.env.VITE_BACK_ADDRESS
 })
 
