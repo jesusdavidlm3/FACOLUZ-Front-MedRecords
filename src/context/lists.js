@@ -2,13 +2,34 @@ export function searchOnList(list, id){
     return list.find(item => item.value == id).label
 }
 
-export const instructionGradeList = [
-    {label: 'Ninguno', value: 1},
-    {label: 'Prescolar', value: 2},
-    {label: 'Primaria', value: 3},
-    {label: 'Bachillerato', value: 4},
-    {label: 'Universitario', value: 5},
-    {label: 'Postgrado', value: 6},
+export const blackList = [
+    {label: 'Clase I', value: 1},
+    {label: 'Clase II', value: 2},
+    {label: 'Clase III', value: 3},
+    {label: 'Clase IV', value: 4},
+    {label: 'Clase V', value: 5},
+]
+
+export const icdasList = [
+    {label: '0', value: 0},
+    {label: '1', value: 1},
+    {label: '2', value: 2},
+    {label: '3', value: 3},
+    {label: '4', value: 4},
+    {label: '5', value: 5},
+    {label: '6', value: 6},
+]    
+
+export const movilityList = [
+    {label: '0', value: 0},
+    {label: 'I', value: 1},
+    {label: 'II', value: 2},
+    {label: 'III', value: 3},
+]
+
+export const radiographyList = [
+    {label: 'Radiopaco', value: 1},
+    {label: 'Radiolucido', value: 2},
 ]
 
 export const bloodTypeList = [
@@ -20,6 +41,15 @@ export const bloodTypeList = [
     {label: 'AB-', value: 6},
     {label: 'O+', value: 7},
     {label: 'O-', value: 8},
+]
+
+export const instructionGradeList = [
+    {label: 'Ninguno', value: 1},
+    {label: 'Prescolar', value: 2},
+    {label: 'Primaria', value: 3},
+    {label: 'Bachillerato', value: 4},
+    {label: 'Universitario', value: 5},
+    {label: 'Postgrado', value: 6},
 ]
 
 export const sexList = [

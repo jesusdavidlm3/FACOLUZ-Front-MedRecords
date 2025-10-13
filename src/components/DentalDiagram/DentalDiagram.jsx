@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Button, Card, Form, Select } from 'antd'
+import { Button, Card, Form, Select, Space, Input, InputNumber } from 'antd'
 import { appContext } from '../../context/appContext'
 import * as lists from "../../context/lists"
 import './style.scss'
@@ -19,6 +19,7 @@ const DentalDiagram = ({saveData}) => {
         71, 72, 73, 74, 75,
         85, 84, 83, 82, 81
     ]
+
 
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -70,16 +71,59 @@ const DentalDiagram = ({saveData}) => {
             
             <div className="options-container" >
                 {isExpanded && (
-                <Card className={`options-list ${isExpanded ? 'expanded' : ''}`}>
-                    <Form.Item label="Pieza dental: ">
-                        <label> {`Pieza 12`} </label>
-                    </Form.Item>
-                    <Form.Item label="Movilidad: ">
-                        <Select/>
-                    </Form.Item>
-                    <Form.Item label="Radiografia: ">
-                        <Select/>
-                    </Form.Item>
+                <Card title="Pieza Dental 12" className={`options-list ${isExpanded ? 'expanded' : ''}`}>
+                    <Space align="start">
+                        <Space direction="vertical">
+                            <Form.Item label="Movilidad: ">
+                                <Select 
+                                    options={lists.movilityList}
+                                    value={null}
+                                    onChange={e => console.log(e)}
+                                />
+                            </Form.Item>
+                            <Form.Item label="Sondaje Vestibular: ">
+                                <InputNumber/>
+                            </Form.Item>
+                            <Form.Item label="Sondaje Palatino: ">
+                                <InputNumber/>
+                            </Form.Item>
+                            <Form.Item label="Radiografia: ">
+                                <Select
+                                    options={lists.radiographyList}
+                                    value={null}
+                                    onChange={e => console.log(e)}
+                                />
+                            </Form.Item>
+                        </Space>
+
+                        <Space direction="vertical">
+                            <Form.Item label="Clasificacion: ">
+                            </Form.Item>
+                            <Form.Item label="ICDAS 1er: ">
+                                <Select
+                                    options={lists.icdasList}
+                                    value={null}
+                                    onChange={e => console.log(e)}
+                                />
+                            </Form.Item>
+                            <Form.Item label="ICDAS 2do: ">
+                                <Select
+                                    options={lists.icdasList}
+                                    value={null}
+                                    onChange={e => console.log(e)}
+                                />
+                            </Form.Item>
+                            <Form.Item label="BLACK: ">
+                                <Select
+                                    options={lists.blackList}
+                                    value={null}
+                                    onChange={e => console.log(e)}
+                                />
+                            </Form.Item>
+                            
+                        </Space>
+                    </Space>
+                    
                     <Form.Item label="Interpretacion:" layout="horizontal"> 
                         <Input.TextArea />
                     </Form.Item>
@@ -87,28 +131,7 @@ const DentalDiagram = ({saveData}) => {
                 )}
             </div>
 
-            {children && <>
-                <h1>Dientes temporales</h1>
-                <div className='diagram_container'>
-                    {childrenPieces.map(tooth => (
-                        <div className='visual_tooth_container'>
-                            {[...Array(5)].map(i => {
-                                const isChecked = document.getElementById(`tooth_${tooth}_area_${i+1}`)
-                                let divActive = 'false'; //puede ser necesario cambiarlo por un useState si no renderiza cambios
-                                
-                                return(<>
-                                    <input type='checkbox' className='dental_diagram_checkbox' id={`tooth_${tooth}_area_${i+1}`}/>
-                                    <div className={`visual_checkbox_dental_diagram_${i} ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />
-                                    {/* {i + 1 == 1 && <div className={`visual_checkbox_dental_diagram_0 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                                    {i + 1 == 2 && <div className={`visual_checkbox_dental_diagram_1 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                                    {i + 1 == 3 && <div className={`visual_checkbox_dental_diagram_2 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                                    {i + 1 == 4 && <div className={`visual_checkbox_dental_diagram_3 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />}
-                                    {i + 1 == 5 && <div className={`visual_checkbox_dental_diagram_4 ${divActive}`} onClick={() => {isChecked.checked = !isChecked.checked; if(divActive == 'true'){divActive = 'false'}else{divActive=='false'}} } />} */}
-                                </>)})}
-                        </div>
-                    ))}
-                </div>
-            </>}
+            
             <Button variant='solid' color='primary' onClick={setResult}>Guardar</Button>
         </div>
     )
