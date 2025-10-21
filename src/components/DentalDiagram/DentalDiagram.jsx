@@ -73,7 +73,7 @@ const DentalDiagram = ({saveData}) => {
                 {isExpanded && (
                 <Card title="Pieza Dental 12" className={`options-list ${isExpanded ? 'expanded' : ''}`}>
                     <Space align="start">
-                        <Space direction="vertical">
+                        <Space className="space" direction="vertical">
                             <Form.Item label="Movilidad: ">
                                 <Select 
                                     options={lists.movilityList}
@@ -96,7 +96,7 @@ const DentalDiagram = ({saveData}) => {
                             </Form.Item>
                         </Space>
 
-                        <Space direction="vertical">
+                        <Space  className="space" direction="vertical">
                             <Form.Item label="Clasificacion: ">
                             </Form.Item>
                             <Form.Item label="ICDAS 1er: ">
