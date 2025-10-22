@@ -3,14 +3,16 @@ import { Button, Card, Form, Select, Space, Input, InputNumber } from 'antd'
 import { appContext } from '../../context/appContext'
 import * as lists from "../../context/lists"
 import './style.scss'
+import Tooth from './Tooth'
 
 const DentalDiagram = ({saveData}) => {
     const children = false; //cambiar a true si es odontograma infantil
     const adultPieces = [
         18, 17, 16, 15, 14, 13, 12, 11,
         21, 22, 23, 24, 25, 26, 27, 28,
-        31, 32, 33, 34, 35, 36, 37, 38,
-        48, 74, 46, 45, 44, 43, 42, 41
+        48, 47, 46, 45, 44, 43, 42, 41,
+        31, 32, 33, 34, 35, 36, 37, 38
+        
     ]
 
     const childrenPieces = [
@@ -20,6 +22,7 @@ const DentalDiagram = ({saveData}) => {
         85, 84, 83, 82, 81
     ]
 
+    const [tooths, setTooths] = useState([]);
 
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -57,15 +60,8 @@ const DentalDiagram = ({saveData}) => {
     return(
         <div className='dental_diagram'>
             <div className='diagram_container'>
-                {adultPieces.map((tooth, i) => (
-                    <div className='visual_tooth_container'>
-                        {[...Array(5)].map((_, j) => {
-                            const isChecked = document.getElementById(`tooth_${tooth}_area_${i}`)
-                            return(<>
-                            <div className={`visual_checkbox_dental_diagram_${j} ${divActive}`} onClick={toggleExpand} />
-                            </>)
-                        })}
-                    </div>
+                {adultPieces.map((t, i) => (
+                    <Tooth identification={t} expandedMenu={toggleExpand} />
                 ))}
             </div>
             
